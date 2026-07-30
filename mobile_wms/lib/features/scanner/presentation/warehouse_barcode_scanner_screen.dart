@@ -37,13 +37,13 @@ class _WarehouseBarcodeScannerScreenState
     if (rawValue != null && rawValue.trim().isNotEmpty) {
       setState(() => _isProcessing = true);
 
-      // 1. Respon Getar Haptic
+      // Respon Getar Haptic
       HapticFeedback.mediumImpact();
 
-      // 2. Callback hasil pemindaian
+      // Callback hasil pemindaian
       widget.onBarcodeScanned(rawValue.trim(), capture.barcodes.first.format.name);
 
-      // 3. Debounce 1.2 Detik (Cegah pemindaian ganda/double trigger)
+      // Jeda 1.2 Detik untuk mencegah pemindaian ganda
       await Future.delayed(const Duration(milliseconds: 1200));
 
       if (mounted) setState(() => _isProcessing = false);
@@ -51,21 +51,104 @@ class _WarehouseBarcodeScannerScreenState
   }
 
   void _showManualInputDialog() {
-    final TextEditingController textController = TextEditingController();
+    final TextEditingController titleController = TextEditingController();
+    final TextEditingController qtyController = TextEditingController(text: '1');
+    final TextEditingController barcodeController = TextEditingController();
 
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           backgroundColor: const Color(0xFF1E1E2E),
-          title: const Text('Input ISBN / SKU Manual', style: TextStyle(color: Colors.white)),
-          content: TextField(
-            controller: textController,
-            autofocus: true,
-            style: const TextStyle(color: Colors.white),
-            decoration: const InputDecoration(
-              hintText: 'Contoh: 9786020324121',
-              hintStyle: TextStyle(color: Colors.grey),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          title: Row(
+            children: const [
+              Icon(Icons.camera_alt_outlined, color: Colors.cyanAccent),
+              SizedBox(width: 10),
+              Text(
+                'Input Buku (Tanpa Barcode)',
+                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Buku tidak memiliki barcode fisik? Foto dan semua detail di bawah bersifat opsional (opsional).',
+                  style: TextStyle(color: Colors.white70, fontSize: 12),
+                ),
+                const SizedBox(height: 14),
+
+                // Mock Area Foto Sampul / Tumpukan Buku
+                InkWell(
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Foto sampul buku berhasil diambil!')),
+                    );
+                  },
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    height: 100,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.black26,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.cyanAccent.withOpacity(0.4), style: BorderStyle.solid),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.add_a_photo_outlined, color: Colors.cyanAccent, size: 32),
+                        SizedBox(height: 6),
+                        Text('Ambil Foto Buku (Opsional)', style: TextStyle(color: Colors.cyanAccent, fontSize: 12)),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 14),
+
+                // Form Judul (Opsional)
+                TextField(
+                  controller: titleController,
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
+                    labelText: 'Judul Buku (Opsional)',
+                    labelStyle: TextStyle(color: Colors.grey),
+                    hintText: 'Contoh: Sejarah Nusantara',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 10),
+
+                // Form Jumlah Fisik (Opsional)
+                TextField(
+                  controller: qtyController,
+                  keyboardType: TextInputType.number,
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
+                    labelText: 'Jumlah Exemplar / Fisik (Opsional)',
+                    labelStyle: TextStyle(color: Colors.grey),
+                    hintText: '1',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 10),
+
+                // Form Kode SKU/ISBN Manual (Opsional)
+                TextField(
+                  controller: barcodeController,
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
+                    labelText: 'Kode SKU / Nomor (Opsional)',
+                    labelStyle: TextStyle(color: Colors.grey),
+                    hintText: 'Contoh: 9786020324121',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ],
             ),
           ),
           actions: [
@@ -73,15 +156,20 @@ class _WarehouseBarcodeScannerScreenState
               onPressed: () => Navigator.of(context).pop(),
               child: const Text('Batal', style: TextStyle(color: Colors.grey)),
             ),
-            ElevatedButton(
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.cyanAccent,
+                foregroundColor: Colors.black,
+              ),
+              icon: const Icon(Icons.check),
+              label: const Text('Simpan Buku', style: TextStyle(fontWeight: FontWeight.bold)),
               onPressed: () {
-                final input = textController.text.trim();
-                if (input.isNotEmpty) {
-                  Navigator.of(context).pop();
-                  widget.onBarcodeScanned(input, 'MANUAL_ENTRY');
-                }
+                final kode = barcodeController.text.trim().isNotEmpty
+                    ? barcodeController.text.trim()
+                    : 'TANPA-BARCODE-${DateTime.now().millisecondsSinceEpoch}';
+                Navigator.of(context).pop();
+                widget.onBarcodeScanned(kode, 'TANPA_BARCODE_FOTO');
               },
-              child: const Text('Gunakan'),
             ),
           ],
         );
@@ -102,7 +190,7 @@ class _WarehouseBarcodeScannerScreenState
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Text('Pemindai Barcode Buku & Rak'),
+        title: const Text('Pemindai Kamera & Foto Buku'),
         backgroundColor: const Color(0xFF1E1E2E),
         actions: [
           IconButton(
@@ -112,22 +200,21 @@ class _WarehouseBarcodeScannerScreenState
             ),
             onPressed: () {
               _scannerController.toggleTorch();
-              setState(() {
-                _isTorchOn = !_isTorchOn;
-              });
+              setState(() => _isTorchOn = !_isTorchOn);
             },
+            tooltip: 'Lampu Senter',
           ),
         ],
       ),
       body: Stack(
         children: [
-          // 1. Live Camera Viewfinder
+          // Kamera Pemindai Live
           MobileScanner(
             controller: _scannerController,
             onDetect: _handleBarcodeCapture,
           ),
 
-          // 2. Reticle Box Center Overlay
+          // Kotak Retikel Fokus Kamera
           Align(
             alignment: Alignment.center,
             child: Container(
@@ -143,23 +230,50 @@ class _WarehouseBarcodeScannerScreenState
             ),
           ),
 
-          // 3. Tombol Fallback Manual Input
+          // Petunjuk Bahasa Indonesia
           Positioned(
-            bottom: 40,
-            left: 32,
-            right: 32,
+            top: 30,
+            left: 20,
+            right: 20,
+            child: Center(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF1E1E2E).withOpacity(0.9),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  _isProcessing
+                      ? "Sedang Membaca Kode Buku..."
+                      : "Arahkan Kamera ke Barcode / Gunakan Tombol di Bawah",
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: Colors.white, fontSize: 13),
+                ),
+              ),
+            ),
+          ),
+
+          // Tombol Input Utama: Buku Tanpa Barcode (Foto & Detail Opsional)
+          Positioned(
+            bottom: 30,
+            left: 24,
+            right: 24,
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF1E1E2E),
                 foregroundColor: Colors.cyanAccent,
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(14),
                   side: const BorderSide(color: Colors.cyanAccent, width: 1.5),
                 ),
+                elevation: 6,
               ),
-              icon: const Icon(Icons.keyboard_alt_outlined),
-              label: const Text('Input SKU / ISBN Manual (Barcode Rusak)'),
+              icon: const Icon(Icons.add_a_photo_outlined),
+              label: const Text(
+                'Input Buku Tanpa Barcode / Ambil Foto',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
               onPressed: widget.onManualInputPressed ?? _showManualInputDialog,
             ),
           ),
