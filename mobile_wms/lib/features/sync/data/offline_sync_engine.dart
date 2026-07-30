@@ -26,10 +26,8 @@ class OfflineSyncEngine {
 
   Future<Database> _initDatabase() async {
     final dbPath = await getDatabasesPath();
-    final path = join(dbPath, 'wms_offline_queue.db');
-
     return await openDatabase(
-      path,
+      join(dbPath, 'wms_offline_queue.db'),
       version: 1,
       onCreate: (db, version) async {
         await db.execute('''
@@ -49,38 +47,29 @@ class OfflineSyncEngine {
     );
   }
 
-  // 1. Inisialisasi Event Listener Perubahan Jaringan (Online / Offline)
+  // Auto-Sync saat koneksi jaringan pulih kembali
   void initNetworkListener() {
     _connectivitySubscription = Connectivity()
         .onConnectivityChanged
         .listen((List<ConnectivityResult> results) async {
-      final isOnline = results.any((result) =>
-          result == ConnectivityResult.wifi ||
-          result == ConnectivityResult.mobile ||
-          result == ConnectivityResult.ethernet);
+      final isOnline = results.any((r) =>
+          r == ConnectivityResult.wifi ||
+          r == ConnectivityResult.mobile);
 
       if (isOnline) {
-        print('🌐 Sinyal terhubung kembali! Memulai proses auto-sync...');
         await processSyncQueue();
       }
     });
   }
 
-  // 2. Simpan Transaksi Opname ke Local SQLite DB (Mode Offline)
+  // Simpan transaksi lokal (Mode Offline)
   Future<void> enqueueOpnameRecord(StockOpnameSyncQueueModel item) async {
     final db = await database;
-    await db.insert(
-      'stock_opname_queue',
-      item.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-    print('💾 Opname lokal tersimpan (ID: ${item.clientMutationId}) dengan status PENDING');
-
-    // Coba kirim instan jika sedang online
+    await db.insert('stock_opname_queue', item.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
     processSyncQueue();
   }
 
-  // 3. Eksekusi Pengiriman Batch ke Backend Server
+  // Flush Antrean Batch ke Backend Server
   Future<void> processSyncQueue() async {
     if (_isSyncing) return;
     _isSyncing = true;
@@ -91,8 +80,7 @@ class OfflineSyncEngine {
         'stock_opname_queue',
         where: 'status = ?',
         whereArgs: [SyncQueueStatus.pending.name],
-        orderBy: 'created_at ASC',
-        limit: 50, // Batch limit 50 items per sync request
+        limit: 50,
       );
 
       if (maps.isEmpty) {
@@ -100,35 +88,21 @@ class OfflineSyncEngine {
         return;
       }
 
-      final itemsToSync =
-          maps.map((m) => StockOpnameSyncQueueModel.fromMap(m)).toList();
-      print('🚀 Mengirim batch ${itemsToSync.length} transaksi opname ke server...');
+      final itemsToSync = maps.map((m) => StockOpnameSyncQueueModel.fromMap(m)).toList();
 
-      // Tandai item sebagai SYNCING
-      for (var item in itemsToSync) {
-        await db.update(
-          'stock_opname_queue',
-          {'status': SyncQueueStatus.syncing.name},
-          where: 'client_mutation_id = ?',
-          whereArgs: [item.clientMutationId],
-        );
-      }
-
-      // HTTP POST Batch Data ke Backend Gateway
       final response = await _dioClient.post(
         _backendApiUrl,
-        data: {
-          'batch': itemsToSync.map((item) => item.toMap()).toList(),
-        },
-        options: Options(timeout: const Duration(seconds: 15)),
+        data: {'batch': itemsToSync.map((item) => item.toMap()).toList()},
+        options: Options(
+          sendTimeout: const Duration(seconds: 15),
+          receiveTimeout: const Duration(seconds: 15),
+        ),
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final List<dynamic> syncedIds = response.data['synced_ids'] ?? [];
-
         for (var item in itemsToSync) {
           if (syncedIds.contains(item.clientMutationId)) {
-            // Tandai item sukses tersinkronisasi
             await db.update(
               'stock_opname_queue',
               {'status': SyncQueueStatus.synced.name},
@@ -137,27 +111,12 @@ class OfflineSyncEngine {
             );
           }
         }
-        print('✅ Batch sync berhasil diproses oleh Backend');
       }
-    } on DioException catch (dioErr) {
-      print('⚠️ Gagal terhubung ke backend server: ${dioErr.message}');
-      await _rollbackSyncingStatus();
     } catch (e) {
-      print('❌ Error tak terduga saat sync: $e');
-      await _rollbackSyncingStatus();
+      print('Gagal melakukan sync: $e');
     } finally {
       _isSyncing = false;
     }
-  }
-
-  Future<void> _rollbackSyncingStatus() async {
-    final db = await database;
-    await db.update(
-      'stock_opname_queue',
-      {'status': SyncQueueStatus.pending.name},
-      where: 'status = ?',
-      whereArgs: [SyncQueueStatus.syncing.name],
-    );
   }
 
   void dispose() {
