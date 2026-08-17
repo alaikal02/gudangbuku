@@ -15,7 +15,7 @@ class Book {
   double? costPrice;
   double? price;
   int? weightGram;
-  String? pages;
+  int? pages;
   String? size;
   String coverType;
   String? photoUrl;
@@ -66,7 +66,7 @@ class Book {
     double? costPrice,
     double? price,
     int? weightGram,
-    String? pages,
+    int? pages,
     String? size,
     String? coverType,
     String? photoUrl,
@@ -122,6 +122,14 @@ class Book {
   }
 
   factory Book.fromJson(Map<String, dynamic> json) {
+    int? parsePages(dynamic val) {
+      if (val == null) return null;
+      if (val is num) return val.toInt();
+      final match = RegExp(r'\d+').firstMatch(val.toString());
+      if (match != null) return int.tryParse(match.group(0)!);
+      return null;
+    }
+
     return Book(
       id: json['id'],
       title: json['title'] ?? '',
@@ -137,7 +145,7 @@ class Book {
       costPrice: json['costPrice'] != null ? (json['costPrice'] as num).toDouble() : null,
       price: json['price'] != null ? (json['price'] as num).toDouble() : null,
       weightGram: json['weightGram'] != null ? (json['weightGram'] as num).toInt() : null,
-      pages: json['pages'],
+      pages: parsePages(json['pages']),
       size: json['size'] ?? '14 x 21 cm (A5)',
       coverType: json['coverType'] ?? 'Softcover',
       photoUrl: json['photoUrl'],

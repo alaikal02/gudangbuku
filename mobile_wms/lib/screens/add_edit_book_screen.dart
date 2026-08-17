@@ -68,7 +68,7 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
     _priceController.text = b?.price != null ? b!.price!.toStringAsFixed(0) : '60000';
     _costPriceController.text = b?.costPrice != null ? b!.costPrice!.toStringAsFixed(0) : '25000';
     _weightController.text = b?.weightGram != null ? b!.weightGram.toString() : '200';
-    _pagesController.text = b?.pages ?? '150 Halaman';
+    _pagesController.text = b?.pages != null ? b!.pages.toString() : '150';
     _sizeController.text = b?.size ?? '14 x 21 cm (A5)';
     _customCoverController.text = b?.coverType ?? '';
     _notesController.text = b?.notes ?? '';
@@ -119,7 +119,7 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
     final price = double.tryParse(_priceController.text.trim());
     final costPrice = double.tryParse(_costPriceController.text.trim());
     final weight = int.tryParse(_weightController.text.trim());
-    final pages = _pagesController.text.trim().isEmpty ? null : _pagesController.text.trim();
+    final pages = int.tryParse(_pagesController.text.trim());
     final size = _sizeController.text.trim().isEmpty ? null : _sizeController.text.trim();
 
     // Determine Cover value
@@ -371,9 +371,11 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
                   Expanded(
                     child: _buildTextField(
                       controller: _pagesController,
-                      label: 'Jumlah Halaman',
-                      hint: '180 Halaman',
+                      label: 'Jumlah Halaman (Hlm)',
+                      hint: '180',
                       icon: Icons.auto_stories_outlined,
+                      keyboardType: TextInputType.number,
+                      suffixText: 'Hlm',
                       isDark: isDark,
                     ),
                   ),
@@ -458,6 +460,7 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
     required IconData icon,
     required bool isDark,
     TextInputType keyboardType = TextInputType.text,
+    String? suffixText,
     int maxLines = 1,
     String? Function(String?)? validator,
   }) {
@@ -473,6 +476,12 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
         hintText: hint,
         hintStyle: TextStyle(fontSize: 12, color: isDark ? Colors.grey[600] : Colors.grey[400]),
         prefixIcon: Icon(icon, size: 18, color: isDark ? Colors.grey[400] : Colors.grey[600]),
+        suffixText: suffixText,
+        suffixStyle: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+          color: isDark ? Colors.cyanAccent : Colors.teal[800],
+        ),
         filled: true,
         fillColor: isDark ? const Color(0xFF1E1E2E) : Colors.white,
         contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),

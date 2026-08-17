@@ -204,7 +204,7 @@ class _InventoryCatalogScreenState extends State<InventoryCatalogScreen> {
                   _buildDetailRow('Batas Stok Minimum', '${book.safetyThreshold} eks', isDark),
                   _buildDetailRow('Jenis Cover / Finishing', book.coverType, isDark),
                   _buildDetailRow('Dimensi / Ukuran', book.size ?? '-', isDark),
-                  _buildDetailRow('Jumlah Halaman', book.pages ?? '-', isDark),
+                  _buildDetailRow('Jumlah Halaman', book.pages != null ? '${book.pages} Halaman' : '-', isDark),
                   _buildDetailRow('Berat Buku', '${book.weightGram ?? 0} gram', isDark),
                   _buildDetailRow('Harga Jual (HET)', _formatRupiah(book.price), isDark),
                   _buildDetailRow('Harga Pokok Cetak (HPP)', _formatRupiah(book.costPrice), isDark),
