@@ -15,7 +15,7 @@ class Book {
   double? costPrice;
   double? price;
   int? weightGram;
-  int? pages;
+  dynamic _rawPages;
   String? size;
   String coverType;
   String? photoUrl;
@@ -44,8 +44,11 @@ class Book {
     this.notes,
     DateTime? updatedAt,
   })  : id = id ?? const Uuid().v4(),
-        pages = _parsePages(pages),
+        _rawPages = _parsePages(pages),
         updatedAt = updatedAt ?? DateTime.now();
+
+  int? get pages => _parsePages(_rawPages);
+  set pages(dynamic val) => _rawPages = _parsePages(val);
 
   static int? _parsePages(dynamic val) {
     if (val == null) return null;
