@@ -13,19 +13,19 @@ class AddEditBookScreen extends StatefulWidget {
 class _AddEditBookScreenState extends State<AddEditBookScreen> {
   final _formKey = GlobalKey<FormState>();
 
-  late TextEditingController _titleController;
-  late TextEditingController _isbnController;
-  late TextEditingController _stockController;
-  late TextEditingController _safetyThresholdController;
-  late TextEditingController _authorController;
-  late TextEditingController _publisherController;
-  late TextEditingController _priceController;
-  late TextEditingController _costPriceController;
-  late TextEditingController _weightController;
-  late TextEditingController _pagesController;
-  late TextEditingController _sizeController;
-  late TextEditingController _customCoverController;
-  late TextEditingController _notesController;
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _isbnController = TextEditingController();
+  final TextEditingController _stockController = TextEditingController();
+  final TextEditingController _safetyThresholdController = TextEditingController();
+  final TextEditingController _authorController = TextEditingController();
+  final TextEditingController _publisherController = TextEditingController();
+  final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _costPriceController = TextEditingController();
+  final TextEditingController _weightController = TextEditingController();
+  final TextEditingController _pagesController = TextEditingController();
+  final TextEditingController _sizeController = TextEditingController();
+  final TextEditingController _customCoverController = TextEditingController();
+  final TextEditingController _notesController = TextEditingController();
 
   String _category = 'Fiqih & Syariah';
   String _zone = 'Zona A';
@@ -59,19 +59,19 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
   void initState() {
     super.initState();
     final b = widget.bookToEdit;
-    _titleController = TextEditingController(text: b?.title ?? '');
-    _isbnController = TextEditingController(text: b?.isbn ?? '');
-    _stockController = TextEditingController(text: b != null ? b.stock.toString() : '50');
-    _safetyThresholdController = TextEditingController(text: b != null ? b.safetyThreshold.toString() : '15');
-    _authorController = TextEditingController(text: b?.author ?? '');
-    _publisherController = TextEditingController(text: b?.publisher ?? 'Darussholah');
-    _priceController = TextEditingController(text: b?.price != null ? b!.price!.toStringAsFixed(0) : '60000');
-    _costPriceController = TextEditingController(text: b?.costPrice != null ? b!.costPrice!.toStringAsFixed(0) : '25000');
-    _weightController = TextEditingController(text: b?.weightGram != null ? b!.weightGram.toString() : '200');
-    _pagesController = TextEditingController(text: b?.pages ?? '150 Halaman');
-    _sizeController = TextEditingController(text: b?.size ?? '14 x 21 cm (A5)');
-    _customCoverController = TextEditingController(text: b?.coverType ?? '');
-    _notesController = TextEditingController(text: b?.notes ?? '');
+    _titleController.text = b?.title ?? '';
+    _isbnController.text = b?.isbn ?? '';
+    _stockController.text = b != null ? b.stock.toString() : '50';
+    _safetyThresholdController.text = b != null ? b.safetyThreshold.toString() : '15';
+    _authorController.text = b?.author ?? '';
+    _publisherController.text = b?.publisher ?? 'Darussholah';
+    _priceController.text = b?.price != null ? b!.price!.toStringAsFixed(0) : '60000';
+    _costPriceController.text = b?.costPrice != null ? b!.costPrice!.toStringAsFixed(0) : '25000';
+    _weightController.text = b?.weightGram != null ? b!.weightGram.toString() : '200';
+    _pagesController.text = b?.pages ?? '150 Halaman';
+    _sizeController.text = b?.size ?? '14 x 21 cm (A5)';
+    _customCoverController.text = b?.coverType ?? '';
+    _notesController.text = b?.notes ?? '';
 
     if (b != null) {
       if (_categories.contains(b.category)) _category = b.category;
