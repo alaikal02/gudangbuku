@@ -263,19 +263,17 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
                 ],
               ),
               const SizedBox(height: 12),
+              _buildDropdown(
+                label: 'Zona Gudang',
+                value: _zone,
+                items: _zones,
+                icon: Icons.grid_view,
+                isDark: isDark,
+                onChanged: (val) => setState(() => _zone = val!),
+              ),
+              const SizedBox(height: 12),
               Row(
                 children: [
-                  Expanded(
-                    child: _buildDropdown(
-                      label: 'Zona Gudang',
-                      value: _zone,
-                      items: _zones,
-                      icon: Icons.grid_view,
-                      isDark: isDark,
-                      onChanged: (val) => setState(() => _zone = val!),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
                   Expanded(
                     child: _buildDropdown(
                       label: 'Nomor Rak',
@@ -286,7 +284,7 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
                       onChanged: (val) => setState(() => _rack = val!),
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: _buildDropdown(
                       label: 'Bin / Kotak',
@@ -455,10 +453,16 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
   }) {
     return DropdownButtonFormField<String>(
       value: value,
+      isExpanded: true,
+      isDense: true,
       items: items.map((it) {
         return DropdownMenuItem<String>(
           value: it,
-          child: Text(it, style: TextStyle(fontSize: 12, color: isDark ? Colors.white : Colors.black87)),
+          child: Text(
+            it,
+            style: TextStyle(fontSize: 12, color: isDark ? Colors.white : Colors.black87),
+            overflow: TextOverflow.ellipsis,
+          ),
         );
       }).toList(),
       onChanged: onChanged,
