@@ -334,13 +334,6 @@ class _InventoryCatalogScreenState extends State<InventoryCatalogScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Colors.cyanAccent,
-        foregroundColor: Colors.black87,
-        icon: const Icon(Icons.add),
-        label: const Text('Buku Baru', style: TextStyle(fontWeight: FontWeight.bold)),
-        onPressed: _openAddBookScreen,
-      ),
       body: Column(
         children: [
           // Search & Filter Header Container
