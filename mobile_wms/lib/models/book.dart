@@ -37,14 +37,24 @@ class Book {
     this.costPrice,
     this.price,
     this.weightGram,
-    this.pages,
+    dynamic pages,
     this.size = '14 x 21 cm (A5)',
     this.coverType = 'Softcover',
     this.photoUrl,
     this.notes,
     DateTime? updatedAt,
   })  : id = id ?? const Uuid().v4(),
+        pages = _parsePages(pages),
         updatedAt = updatedAt ?? DateTime.now();
+
+  static int? _parsePages(dynamic val) {
+    if (val == null) return null;
+    if (val is int) return val;
+    if (val is num) return val.toInt();
+    final match = RegExp(r'\d+').firstMatch(val.toString());
+    if (match != null) return int.tryParse(match.group(0)!);
+    return null;
+  }
 
   bool get isOutOfStock => stock <= 0;
   bool get isLowStock => stock > 0 && stock <= safetyThreshold;
@@ -66,7 +76,7 @@ class Book {
     double? costPrice,
     double? price,
     int? weightGram,
-    int? pages,
+    dynamic pages,
     String? size,
     String? coverType,
     String? photoUrl,
@@ -122,14 +132,6 @@ class Book {
   }
 
   factory Book.fromJson(Map<String, dynamic> json) {
-    int? parsePages(dynamic val) {
-      if (val == null) return null;
-      if (val is num) return val.toInt();
-      final match = RegExp(r'\d+').firstMatch(val.toString());
-      if (match != null) return int.tryParse(match.group(0)!);
-      return null;
-    }
-
     return Book(
       id: json['id'],
       title: json['title'] ?? '',
@@ -145,7 +147,7 @@ class Book {
       costPrice: json['costPrice'] != null ? (json['costPrice'] as num).toDouble() : null,
       price: json['price'] != null ? (json['price'] as num).toDouble() : null,
       weightGram: json['weightGram'] != null ? (json['weightGram'] as num).toInt() : null,
-      pages: parsePages(json['pages']),
+      pages: json['pages'],
       size: json['size'] ?? '14 x 21 cm (A5)',
       coverType: json['coverType'] ?? 'Softcover',
       photoUrl: json['photoUrl'],
