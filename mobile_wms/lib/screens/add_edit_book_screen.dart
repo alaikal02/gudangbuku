@@ -23,13 +23,16 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
   late TextEditingController _costPriceController;
   late TextEditingController _weightController;
   late TextEditingController _pagesController;
-  late TextEditingController _sizeController;
+  late TextEditingController _customSizeController;
+  late TextEditingController _customCoverController;
   late TextEditingController _notesController;
 
   String _category = 'Fiqih & Syariah';
   String _zone = 'Zona A';
   String _rack = 'Rak 01';
   String _bin = 'Bin A';
+  String _coverType = 'Softcover';
+  String _size = '14 x 21 cm (A5)';
 
   final List<String> _categories = [
     'Fiqih & Syariah',
@@ -43,6 +46,25 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
   final List<String> _zones = ['Zona A', 'Zona B', 'Zona C', 'Zona D', 'Zona E'];
   final List<String> _racks = ['Rak 01', 'Rak 02', 'Rak 03', 'Rak 04', 'Rak 05'];
   final List<String> _bins = ['Bin A', 'Bin B', 'Bin C', 'Bin D'];
+
+  final List<String> _coverTypes = [
+    'Softcover',
+    'Hardcover',
+    'Hardcover Lux',
+    'Jilid Saku (Pocket)',
+    'E-Book (Digital)',
+    'Lainnya (Ketik Manual)',
+  ];
+
+  final List<String> _sizes = [
+    '10 x 14 cm (Saku)',
+    '11 x 15 cm (Saku)',
+    '14 x 21 cm (A5)',
+    '15 x 23 cm (B5)',
+    '17.5 x 25 cm (Besar)',
+    '21 x 29.7 cm (A4)',
+    'Lainnya (Ketik Manual)',
+  ];
 
   @override
   void initState() {
@@ -58,7 +80,8 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
     _costPriceController = TextEditingController(text: b?.costPrice != null ? b!.costPrice!.toStringAsFixed(0) : '25000');
     _weightController = TextEditingController(text: b?.weightGram != null ? b!.weightGram.toString() : '200');
     _pagesController = TextEditingController(text: b?.pages ?? '150 Halaman');
-    _sizeController = TextEditingController(text: b?.size ?? '14 x 21 cm');
+    _customSizeController = TextEditingController(text: b?.size ?? '');
+    _customCoverController = TextEditingController(text: b?.coverType ?? '');
     _notesController = TextEditingController(text: b?.notes ?? '');
 
     if (b != null) {
@@ -66,6 +89,22 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
       if (_zones.contains(b.locationZone)) _zone = b.locationZone;
       if (_racks.contains(b.locationRack)) _rack = b.locationRack;
       if (_bins.contains(b.locationBin)) _bin = b.locationBin;
+
+      // Match Cover Type
+      if (_coverTypes.contains(b.coverType)) {
+        _coverType = b.coverType;
+      } else {
+        _coverType = 'Lainnya (Ketik Manual)';
+        _customCoverController.text = b.coverType;
+      }
+
+      // Match Size
+      if (b.size != null && _sizes.contains(b.size)) {
+        _size = b.size!;
+      } else if (b.size != null && b.size!.isNotEmpty) {
+        _size = 'Lainnya (Ketik Manual)';
+        _customSizeController.text = b.size!;
+      }
     }
   }
 
@@ -81,7 +120,8 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
     _costPriceController.dispose();
     _weightController.dispose();
     _pagesController.dispose();
-    _sizeController.dispose();
+    _customSizeController.dispose();
+    _customCoverController.dispose();
     _notesController.dispose();
     super.dispose();
   }
@@ -99,7 +139,16 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
     final costPrice = double.tryParse(_costPriceController.text.trim());
     final weight = int.tryParse(_weightController.text.trim());
     final pages = _pagesController.text.trim().isEmpty ? null : _pagesController.text.trim();
-    final size = _sizeController.text.trim().isEmpty ? null : _sizeController.text.trim();
+
+    // Determine Cover & Size values
+    final finalCover = _coverType == 'Lainnya (Ketik Manual)'
+        ? (_customCoverController.text.trim().isNotEmpty ? _customCoverController.text.trim() : 'Softcover')
+        : _coverType;
+
+    final finalSize = _size == 'Lainnya (Ketik Manual)'
+        ? (_customSizeController.text.trim().isNotEmpty ? _customSizeController.text.trim() : '14 x 21 cm (A5)')
+        : _size;
+
     final notes = _notesController.text.trim().isEmpty ? null : _notesController.text.trim();
 
     if (widget.bookToEdit != null) {
@@ -118,7 +167,8 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
         costPrice: costPrice,
         weightGram: weight,
         pages: pages,
-        size: size,
+        size: finalSize,
+        coverType: finalCover,
         notes: notes,
       );
       Navigator.pop(context, updated);
@@ -138,7 +188,8 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
         costPrice: costPrice,
         weightGram: weight,
         pages: pages,
-        size: size,
+        size: finalSize,
+        coverType: finalCover,
         notes: notes,
       );
       Navigator.pop(context, newBook);
@@ -351,13 +402,45 @@ class _AddEditBookScreenState extends State<AddEditBookScreen> {
                 ],
               ),
               const SizedBox(height: 12),
-              _buildTextField(
-                controller: _sizeController,
+              // Dropdown Jenis Cover
+              _buildDropdown(
+                label: 'Jenis Cover / Finishing',
+                value: _coverType,
+                items: _coverTypes,
+                icon: Icons.style_outlined,
+                isDark: isDark,
+                onChanged: (val) => setState(() => _coverType = val!),
+              ),
+              if (_coverType == 'Lainnya (Ketik Manual)') ...[
+                const SizedBox(height: 8),
+                _buildTextField(
+                  controller: _customCoverController,
+                  label: 'Ketik Jenis Cover Kustom',
+                  hint: 'Contoh: Hardcover Kulit Sintetis / Velvet',
+                  icon: Icons.edit_note_outlined,
+                  isDark: isDark,
+                ),
+              ],
+              const SizedBox(height: 12),
+              // Dropdown Dimensi / Ukuran Buku
+              _buildDropdown(
                 label: 'Dimensi / Ukuran Buku',
-                hint: 'Contoh: 10 x 14 cm (Saku) atau 14 x 21 cm',
+                value: _size,
+                items: _sizes,
                 icon: Icons.aspect_ratio_outlined,
                 isDark: isDark,
+                onChanged: (val) => setState(() => _size = val!),
               ),
+              if (_size == 'Lainnya (Ketik Manual)') ...[
+                const SizedBox(height: 8),
+                _buildTextField(
+                  controller: _customSizeController,
+                  label: 'Ketik Dimensi Ukuran Kustom',
+                  hint: 'Contoh: 12 x 18 cm atau 16 x 24 cm',
+                  icon: Icons.edit_note_outlined,
+                  isDark: isDark,
+                ),
+              ],
               const SizedBox(height: 12),
               _buildTextField(
                 controller: _notesController,

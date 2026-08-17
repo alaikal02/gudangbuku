@@ -202,10 +202,12 @@ class _InventoryCatalogScreenState extends State<InventoryCatalogScreen> {
                   _buildDetailRow('Kategori Kitab', book.category, isDark),
                   _buildDetailRow('Lokasi Rak Gudang', book.locationCode, isDark),
                   _buildDetailRow('Batas Stok Minimum', '${book.safetyThreshold} eks', isDark),
+                  _buildDetailRow('Jenis Cover / Finishing', book.coverType, isDark),
+                  _buildDetailRow('Dimensi / Ukuran', book.size ?? '-', isDark),
+                  _buildDetailRow('Jumlah Halaman', book.pages ?? '-', isDark),
+                  _buildDetailRow('Berat Buku', '${book.weightGram ?? 0} gram', isDark),
                   _buildDetailRow('Harga Jual (HET)', _formatRupiah(book.price), isDark),
                   _buildDetailRow('Harga Pokok Cetak (HPP)', _formatRupiah(book.costPrice), isDark),
-                  _buildDetailRow('Berat Buku', '${book.weightGram ?? 0} gram', isDark),
-                  _buildDetailRow('Dimensi & Halaman', '${book.size ?? "-"} • ${book.pages ?? "-"}', isDark),
                   if (book.notes != null && book.notes!.isNotEmpty)
                     _buildDetailRow('Catatan Gudang', book.notes!, isDark),
 
@@ -595,6 +597,7 @@ class _InventoryCatalogScreenState extends State<InventoryCatalogScreen> {
                 children: [
                   _buildTag(book.category, Icons.label_outline, Colors.blue, isDark),
                   _buildTag(book.locationCode, Icons.place_outlined, Colors.amber, isDark),
+                  _buildTag(book.coverType, Icons.style_outlined, Colors.purple, isDark),
                   if (book.isbn.isNotEmpty)
                     _buildTag(book.isbn, Icons.qr_code_2_rounded, Colors.grey, isDark),
                 ],

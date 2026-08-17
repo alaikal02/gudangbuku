@@ -17,6 +17,7 @@ class Book {
   int? weightGram;
   String? pages;
   String? size;
+  String coverType;
   String? photoUrl;
   String? notes;
   DateTime updatedAt;
@@ -37,7 +38,8 @@ class Book {
     this.price,
     this.weightGram,
     this.pages,
-    this.size,
+    this.size = '14 x 21 cm (A5)',
+    this.coverType = 'Softcover',
     this.photoUrl,
     this.notes,
     DateTime? updatedAt,
@@ -66,6 +68,7 @@ class Book {
     int? weightGram,
     String? pages,
     String? size,
+    String? coverType,
     String? photoUrl,
     String? notes,
   }) {
@@ -86,6 +89,7 @@ class Book {
       weightGram: weightGram ?? this.weightGram,
       pages: pages ?? this.pages,
       size: size ?? this.size,
+      coverType: coverType ?? this.coverType,
       photoUrl: photoUrl ?? this.photoUrl,
       notes: notes ?? this.notes,
       updatedAt: DateTime.now(),
@@ -110,6 +114,7 @@ class Book {
       'weightGram': weightGram,
       'pages': pages,
       'size': size,
+      'coverType': coverType,
       'photoUrl': photoUrl,
       'notes': notes,
       'updatedAt': updatedAt.toIso8601String(),
@@ -133,7 +138,8 @@ class Book {
       price: json['price'] != null ? (json['price'] as num).toDouble() : null,
       weightGram: json['weightGram'] != null ? (json['weightGram'] as num).toInt() : null,
       pages: json['pages'],
-      size: json['size'],
+      size: json['size'] ?? '14 x 21 cm (A5)',
+      coverType: json['coverType'] ?? 'Softcover',
       photoUrl: json['photoUrl'],
       notes: json['notes'],
       updatedAt: json['updatedAt'] != null

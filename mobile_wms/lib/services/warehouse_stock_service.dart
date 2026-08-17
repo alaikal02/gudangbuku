@@ -21,6 +21,7 @@ class WarehouseStockService extends ChangeNotifier {
       weightGram: 120,
       pages: '96 Halaman',
       size: '10 x 14 cm (Saku)',
+      coverType: 'Softcover',
       notes: 'Buku saku hafalan santri Ibtidaiyah/Dasar.',
     ),
     Book(
@@ -40,6 +41,7 @@ class WarehouseStockService extends ChangeNotifier {
       weightGram: 180,
       pages: '180 Halaman',
       size: '10 x 14 cm (Saku)',
+      coverType: 'Softcover',
       notes: 'Terjemah fikih kontemporer populer. Perlu jadwal cetak ulang.',
     ),
     Book(
@@ -58,7 +60,8 @@ class WarehouseStockService extends ChangeNotifier {
       costPrice: 48000,
       weightGram: 250,
       pages: '310 Halaman',
-      size: '11 x 15 cm',
+      size: '11 x 15 cm (Saku)',
+      coverType: 'Softcover',
       notes: 'Rujukan santri Aliyah/Senior.',
     ),
     Book(
@@ -77,7 +80,8 @@ class WarehouseStockService extends ChangeNotifier {
       costPrice: 85000,
       weightGram: 1200,
       pages: '750 Halaman',
-      size: '15 x 23 cm (Hardcover)',
+      size: '15 x 23 cm (B5)',
+      coverType: 'Hardcover Lux',
       notes: 'Edisi 3 Jilid lengkap rujukan madzhab Syafi\'i.',
     ),
     Book(
@@ -96,7 +100,8 @@ class WarehouseStockService extends ChangeNotifier {
       costPrice: 80000,
       weightGram: 350,
       pages: '290 Halaman',
-      size: '14 x 21 cm',
+      size: '14 x 21 cm (A5)',
+      coverType: 'Hardcover',
       notes: 'Stok menipis drastis karena pemesanan grosir pesantren.',
     ),
     Book(
@@ -115,7 +120,8 @@ class WarehouseStockService extends ChangeNotifier {
       costPrice: 18000,
       weightGram: 110,
       pages: '88 Halaman',
-      size: '10 x 14 cm',
+      size: '10 x 14 cm (Saku)',
+      coverType: 'Softcover',
       notes: 'Kitab tauhid dasar 20 sifat wajib Allah.',
     ),
     Book(
@@ -134,7 +140,8 @@ class WarehouseStockService extends ChangeNotifier {
       costPrice: 38000,
       weightGram: 260,
       pages: '210 Halaman',
-      size: '14 x 21 cm',
+      size: '14 x 21 cm (A5)',
+      coverType: 'Softcover',
       notes: 'Stok habis, dalam antrean cetak pabrik.',
     ),
   ];
