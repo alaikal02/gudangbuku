@@ -1,12 +1,14 @@
 name = "gudangbuku"
+main = "worker.js"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
-# Cloudflare Pages Static Build Output Directory
-pages_build_output_dir = "tokobuku-v2"
+# Static Assets Routing (Points to frontend folder)
+[assets]
+directory = "tokobuku-v2"
+binding = "ASSETS"
 
-# Cloudflare D1 Database Binding Configuration
-# Binds the database instance to context.env.DB in Cloudflare Pages Functions
+# Native Cloudflare D1 Database Binding
 [[d1_databases]]
 binding = "DB"
 database_name = "gudangbuku-db"
