@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
-DARUSSHOLAH - TOKOBUKU-V2 BACKEND SERVER
-Cloud-Native Python Backend with Standard Library Supabase (PostgreSQL) Client.
-Supports Cloudflare Container/Serverless Deployment, Asynchronous Database Handshakes,
-and Graceful Structured Error Handling.
+DARUSSHOLAH - TOKOBUKU BACKEND SERVER
+Cloud-Native Python Backend with Native Cloudflare D1 (SQLite) REST Client.
+Optimized for Serverless Edge Runtimes and Cloudflare Container Environments.
 """
 
 import os
@@ -17,8 +16,7 @@ import logging
 import urllib.parse
 import urllib.request
 import urllib.error
-import concurrent.futures
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import SimpleHTTPRequestHandler, HTTPServer
 
 # Configure Structured Logging
 logging.basicConfig(
@@ -26,18 +24,20 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] [%(name)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
 )
-logger = logging.getLogger("tokobuku.server")
+logger = logging.getLogger("tokobuku.d1")
 
 # Environment Configurations (Injected via Cloudflare / Docker Environment)
 PORT = int(os.environ.get("PORT", sys.argv[1] if len(sys.argv) > 1 else 8000))
-HOST = os.environ.get("HOST", "")
+HOST = os.environ.get("HOST", "0.0.0.0")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BOOKS_FILE = os.path.join(BASE_DIR, "books.json")
 UPLOADS_DIR = os.path.join(BASE_DIR, "uploads")
 
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
-SUPABASE_KEY = os.environ.get("SUPABASE_KEY") or os.environ.get("SUPABASE_ANON_KEY") or os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
-DB_TIMEOUT = float(os.environ.get("DB_TIMEOUT", 8.0))
+# Cloudflare D1 Database Credentials
+CF_ACCOUNT_ID = os.environ.get("CLOUDFLARE_ACCOUNT_ID") or os.environ.get("CF_ACCOUNT_ID", "").strip()
+CF_DATABASE_ID = os.environ.get("CLOUDFLARE_D1_DATABASE_ID") or os.environ.get("CF_D1_DATABASE_ID", "").strip()
+CF_API_TOKEN = os.environ.get("CLOUDFLARE_API_TOKEN") or os.environ.get("CF_API_TOKEN", "").strip()
+D1_TIMEOUT = float(os.environ.get("D1_TIMEOUT", 6.0))
 
 os.makedirs(UPLOADS_DIR, exist_ok=True)
 
@@ -50,7 +50,7 @@ def slugify(text):
 
 
 # ==============================================================================
-# 1. DATA MAPPING ENGINE (Cloud PostgreSQL Schema <-> Frontend Store Schema)
+# 1. DATA MAPPING ENGINE (Cloudflare D1 SQLite <-> Frontend Store Schema)
 # ==============================================================================
 
 def clean_int(val, default=0):
@@ -76,7 +76,7 @@ def clean_float(val, default=0.0):
 
 def map_db_to_book(row):
     """
-    Transforms a Supabase PostgreSQL row into the application book object.
+    Transforms a Cloudflare D1 SQLite row into the application book object.
     Guarantees all 14 mandatory product fields:
     title, author, genre, publisher, published_date, isbn, pages,
     length_cm, width_cm, weight_gram, original_price, selling_price,
@@ -97,7 +97,7 @@ def map_db_to_book(row):
     author = row.get("author") or raw_metadata.get("author") or "Darussholah Press"
     genre = row.get("genre") or raw_metadata.get("genre") or "umum"
     publisher = row.get("publisher") or raw_metadata.get("publisher") or "Darussholah"
-    published_date = str(row.get("published_date") or row.get("publication_year") or raw_metadata.get("releaseDate") or "2026")
+    published_date = str(row.get("published_date") or raw_metadata.get("releaseDate") or "2026")
     isbn = str(row.get("isbn") or raw_metadata.get("isbn") or "Belum Terdaftar")
     pages = clean_int(row.get("pages") or raw_metadata.get("pages"), 180)
     length_cm = clean_float(row.get("length_cm") or raw_metadata.get("length_cm") or raw_metadata.get("height_cm"), 21.0)
@@ -117,18 +117,25 @@ def map_db_to_book(row):
     cover_class = row.get("cover_class") or row.get("coverClass") or raw_metadata.get("coverClass") or (
         "" if cover_img else "bg-gradient-to-br from-indigo-950 via-slate-900 to-indigo-900"
     )
-    marketplace_links = row.get("marketplace_links") or raw_metadata.get("marketplace_links") or {
-        "shopee": raw_metadata.get("shopee"),
-        "tokopedia": raw_metadata.get("tokopedia"),
-        "whatsapp_sales": raw_metadata.get("whatsapp_sales")
-    }
+
+    marketplace_links = row.get("marketplace_links")
+    if isinstance(marketplace_links, str):
+        try:
+            marketplace_links = json.loads(marketplace_links)
+        except Exception:
+            marketplace_links = None
+    if not marketplace_links:
+        marketplace_links = raw_metadata.get("marketplace_links") or {
+            "shopee": raw_metadata.get("shopee"),
+            "tokopedia": raw_metadata.get("tokopedia"),
+            "whatsapp_sales": raw_metadata.get("whatsapp_sales")
+        }
 
     # Calculate discount
     discount = 0
     if original_price > selling_price and original_price > 0:
         discount = round(((original_price - selling_price) / original_price) * 100)
 
-    # Thickness calculation
     thickness_cm = clean_float(row.get("thickness_cm") or raw_metadata.get("thickness_cm"), 1.5)
     size_str = f"{width_cm} × {length_cm} × {thickness_cm} cm"
 
@@ -196,7 +203,7 @@ def map_db_to_book(row):
 
 def map_book_to_db(payload):
     """
-    Transforms payload received from frontend/admin into Supabase PostgreSQL format.
+    Transforms payload received from frontend/admin into Cloudflare D1 row format.
     """
     specs = payload.get("specs") or {}
     dimensions = payload.get("dimensions") or {}
@@ -223,11 +230,16 @@ def map_book_to_db(payload):
     synopsis = payload.get("synopsis", "").strip() or "Buku berkualitas terbitan resmi Darussholah."
     warranty = payload.get("warranty", "").strip() or "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik."
 
+    format_val = payload.get("format", "print")
+    status_val = payload.get("status", "normal")
+    cover_img_val = payload.get("coverImg", "")
+    cover_class_val = payload.get("coverClass", "")
+
     metadata = {
-        "format": payload.get("format", "print"),
-        "status": payload.get("status", "normal"),
-        "coverImg": payload.get("coverImg", ""),
-        "coverClass": payload.get("coverClass", ""),
+        "format": format_val,
+        "status": status_val,
+        "coverImg": cover_img_val,
+        "coverClass": cover_class_val,
         "marketplace_links": payload.get("marketplace_links", {}),
         "language": specs.get("language", "Indonesia & Arab"),
         "samplePages": payload.get("samplePages", []),
@@ -235,7 +247,10 @@ def map_book_to_db(payload):
         "altId": payload.get("altId") or f"{slugify(title)}-saku"
     }
 
-    db_row = {
+    book_id = str(payload.get("id") or slugify(title))
+
+    return {
+        "id": book_id,
         "title": title,
         "author": author,
         "genre": genre,
@@ -245,129 +260,161 @@ def map_book_to_db(payload):
         "pages": pages,
         "length_cm": length_cm,
         "width_cm": width_cm,
+        "thickness_cm": thickness_cm,
         "weight_gram": weight_gram,
         "original_price": original_price,
         "selling_price": selling_price,
         "synopsis": synopsis,
         "warranty": warranty,
-        "metadata": metadata
+        "format": format_val,
+        "status": status_val,
+        "cover_img": cover_img_val,
+        "cover_class": cover_class_val,
+        "metadata": json.dumps(metadata, ensure_ascii=False)
     }
 
-    book_id = payload.get("id")
-    if book_id:
-        db_row["id"] = str(book_id)
-
-    return db_row
-
 
 # ==============================================================================
-# 2. STANDARD LIBRARY SUPABASE POSTGREST CLIENT
+# 2. CLOUDFLARE D1 REST API CLIENT (Zero-Dependency Standard Library)
 # ==============================================================================
 
-class SupabaseClient:
+class CloudflareD1Client:
     """
-    Lightweight, production-grade Supabase PostgREST client implemented purely
-    with Python Standard Library (urllib.request / json / ssl).
-    Zero external dependencies required.
+    Lightweight, production-ready Cloudflare D1 Database Client.
+    Communicates directly with Cloudflare D1 v4 REST API via standard library urllib.
+    Non-blocking, serverless-friendly, and thread-leak free.
     """
 
-    def __init__(self, url, key, timeout=8.0):
-        self.url = (url or "").rstrip("/")
-        self.key = (key or "").strip()
+    def __init__(self, account_id, database_id, api_token, timeout=6.0):
+        self.account_id = (account_id or "").strip()
+        self.database_id = (database_id or "").strip()
+        self.api_token = (api_token or "").strip()
         self.timeout = timeout
         self.ssl_context = ssl.create_default_context()
-        self.ssl_context.check_hostname = False
-        self.ssl_context.verify_mode = ssl.CERT_NONE
 
     @property
     def is_configured(self):
-        return bool(self.url and self.key)
+        return bool(self.account_id and self.database_id and self.api_token)
 
-    def _headers(self, extra=None):
+    def execute_query(self, sql, params=None):
+        """
+        Executes a SQL statement on Cloudflare D1 via the Cloudflare REST API.
+        Endpoint: POST /client/v4/accounts/{account_id}/d1/database/{database_id}/query
+        """
+        if not self.is_configured:
+            raise ConnectionError("Cloudflare D1 credentials missing (CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_D1_DATABASE_ID, or CLOUDFLARE_API_TOKEN).")
+
+        url = f"https://api.cloudflare.com/client/v4/accounts/{self.account_id}/d1/database/{self.database_id}/query"
+        payload = {
+            "sql": sql,
+            "params": params or []
+        }
+
+        body_bytes = json.dumps(payload).encode("utf-8")
         headers = {
-            "apikey": self.key,
-            "Authorization": f"Bearer {self.key}",
+            "Authorization": f"Bearer {self.api_token}",
             "Content-Type": "application/json",
             "Accept": "application/json"
         }
-        if extra:
-            headers.update(extra)
-        return headers
 
-    def execute_request(self, method, endpoint, payload=None, extra_headers=None):
-        """Executes an HTTP request against the Supabase PostgREST REST API."""
-        if not self.is_configured:
-            raise ConnectionError("Supabase credentials not configured (SUPABASE_URL or SUPABASE_KEY missing).")
-
-        full_url = f"{self.url}/rest/v1/{endpoint.lstrip('/')}"
-        data_bytes = None
-        if payload is not None:
-            data_bytes = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-
-        req = urllib.request.Request(
-            full_url,
-            data=data_bytes,
-            headers=self._headers(extra_headers),
-            method=method
-        )
-
+        req = urllib.request.Request(url, data=body_bytes, headers=headers, method="POST")
         start_time = time.time()
+
         try:
             with urllib.request.urlopen(req, timeout=self.timeout, context=self.ssl_context) as resp:
                 elapsed = time.time() - start_time
-                body_bytes = resp.read()
-                logger.info(f"[SUPABASE] {method} {endpoint} -> HTTP {resp.status} ({elapsed:.3f}s)")
-                if body_bytes:
-                    return json.loads(body_bytes.decode("utf-8"))
-                return None
+                res_data = json.loads(resp.read().decode("utf-8"))
+                logger.info(f"[CLOUDFLARE_D1] Query OK ({elapsed:.3f}s)")
+
+                if not res_data.get("success"):
+                    errors = res_data.get("errors", [])
+                    raise RuntimeError(f"Cloudflare D1 query error: {errors}")
+
+                # D1 returns results in result[0].results
+                result_array = res_data.get("result", [])
+                if result_array and isinstance(result_array, list):
+                    return result_array[0].get("results", [])
+                return []
         except urllib.error.HTTPError as he:
             elapsed = time.time() - start_time
             err_content = he.read().decode("utf-8", errors="replace")
-            logger.error(f"[SUPABASE] HTTPError {he.code} on {method} {endpoint}: {err_content} ({elapsed:.3f}s)")
-            raise RuntimeError(f"Supabase HTTP {he.code}: {err_content}") from he
+            logger.error(f"[CLOUDFLARE_D1] HTTPError {he.code}: {err_content} ({elapsed:.3f}s)")
+            raise RuntimeError(f"Cloudflare D1 HTTP {he.code}: {err_content}") from he
         except (urllib.error.URLError, TimeoutError, OSError) as ue:
             elapsed = time.time() - start_time
-            logger.error(f"[SUPABASE] Network/Timeout error on {method} {endpoint}: {ue} ({elapsed:.3f}s)")
-            raise ConnectionError(f"Supabase handshake failed: {ue}") from ue
+            logger.error(f"[CLOUDFLARE_D1] Connection/Timeout error: {ue} ({elapsed:.3f}s)")
+            raise ConnectionError(f"Cloudflare D1 handshake failed: {ue}") from ue
 
     def select_books(self):
-        """Asynchronously executable SELECT * FROM books ORDER BY created_at DESC, title ASC."""
-        return self.execute_request("GET", "books?select=*&order=created_at.desc.nullslast,title.asc")
+        """Queries the 'books' table on the Cloudflare D1 instance."""
+        sql = """
+            SELECT id, title, author, genre, publisher, published_date, isbn,
+                   pages, length_cm, width_cm, thickness_cm, weight_gram,
+                   original_price, selling_price, synopsis, warranty,
+                   format, status, cover_img, cover_class, metadata
+            FROM books
+            ORDER BY created_at DESC, title ASC
+        """
+        return self.execute_query(sql)
 
-    def upsert_book(self, db_row):
-        """Inserts or updates a book in the cloud PostgreSQL table."""
-        book_id = db_row.get("id")
-        headers = {"Prefer": "return=representation"}
-
-        # If id exists, check whether to update or insert
-        if book_id:
-            try:
-                # Attempt to update via PATCH
-                res = self.execute_request("PATCH", f"books?id=eq.{urllib.parse.quote(str(book_id))}", db_row, headers)
-                if res and isinstance(res, list) and len(res) > 0:
-                    return res[0]
-            except Exception as e:
-                logger.warning(f"[SUPABASE] PATCH update failed, falling back to POST: {e}")
-
-        # Insert new record via POST
-        res = self.execute_request("POST", "books", db_row, headers)
-        if res and isinstance(res, list) and len(res) > 0:
-            return res[0]
-        return db_row
+    def upsert_book(self, row):
+        """
+        Inserts or updates a book record in Cloudflare D1 SQLite.
+        Uses SQLite native UPSERT: INSERT INTO ... ON CONFLICT(id) DO UPDATE SET ...
+        """
+        sql = """
+            INSERT INTO books (
+                id, title, author, genre, publisher, published_date, isbn,
+                pages, length_cm, width_cm, thickness_cm, weight_gram,
+                original_price, selling_price, synopsis, warranty,
+                format, status, cover_img, cover_class, metadata, updated_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
+            ON CONFLICT(id) DO UPDATE SET
+                title = excluded.title,
+                author = excluded.author,
+                genre = excluded.genre,
+                publisher = excluded.publisher,
+                published_date = excluded.published_date,
+                isbn = excluded.isbn,
+                pages = excluded.pages,
+                length_cm = excluded.length_cm,
+                width_cm = excluded.width_cm,
+                thickness_cm = excluded.thickness_cm,
+                weight_gram = excluded.weight_gram,
+                original_price = excluded.original_price,
+                selling_price = excluded.selling_price,
+                synopsis = excluded.synopsis,
+                warranty = excluded.warranty,
+                format = excluded.format,
+                status = excluded.status,
+                cover_img = excluded.cover_img,
+                cover_class = excluded.cover_class,
+                metadata = excluded.metadata,
+                updated_at = datetime('now')
+        """
+        params = [
+            row["id"], row["title"], row["author"], row["genre"], row["publisher"],
+            row["published_date"], row["isbn"], row["pages"], row["length_cm"],
+            row["width_cm"], row["thickness_cm"], row["weight_gram"],
+            row["original_price"], row["selling_price"], row["synopsis"],
+            row["warranty"], row["format"], row["status"], row["cover_img"],
+            row["cover_class"], row["metadata"]
+        ]
+        self.execute_query(sql, params)
+        return row
 
     def delete_book(self, book_id):
-        """Deletes a book from the cloud PostgreSQL table."""
-        headers = {"Prefer": "return=representation"}
-        return self.execute_request("DELETE", f"books?id=eq.{urllib.parse.quote(str(book_id))}", extra_headers=headers)
+        """Deletes a book by ID from Cloudflare D1."""
+        sql = "DELETE FROM books WHERE id = ?"
+        self.execute_query(sql, [str(book_id)])
 
 
-# Initialize Global Supabase Client
-supabase_client = SupabaseClient(SUPABASE_URL, SUPABASE_KEY, timeout=DB_TIMEOUT)
-thread_pool = concurrent.futures.ThreadPoolExecutor(max_workers=8, thread_name_prefix="SupabaseWorker")
+# Initialize Global Cloudflare D1 Client
+d1_client = CloudflareD1Client(CF_ACCOUNT_ID, CF_DATABASE_ID, CF_API_TOKEN, timeout=D1_TIMEOUT)
 
 
 # ==============================================================================
-# 3. LOCAL FILE FALLBACK STORAGE (Resilience Engine)
+# 3. LOCAL FALLBACK STORAGE (Reliability & Offline Guard)
 # ==============================================================================
 
 def load_books_local():
@@ -393,10 +440,15 @@ def save_books_local(books):
 
 
 # ==============================================================================
-# 4. HTTP REQUEST HANDLER (REST API & STATIC FILE SERVING)
+# 4. SERVERLESS-COMPATIBLE HTTP HANDLER
 # ==============================================================================
 
 class TokobukuHandler(SimpleHTTPRequestHandler):
+    """
+    Lightweight, synchronous, non-blocking HTTP request handler.
+    Complies with serverless and containerized edge execution environments.
+    """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=BASE_DIR, **kwargs)
 
@@ -430,26 +482,24 @@ class TokobukuHandler(SimpleHTTPRequestHandler):
 
         # Healthcheck Endpoint
         if path in ("/api/health", "/health"):
-            is_cloud = supabase_client.is_configured
+            is_d1 = d1_client.is_configured
             self._send_json({
                 "status": "UP",
                 "service": "darussholah-tokobuku",
                 "port": PORT,
-                "database_mode": "cloud_supabase" if is_cloud else "local_fallback",
-                "supabase_configured": is_cloud,
+                "database_mode": "cloudflare_d1_sqlite" if is_d1 else "local_fallback",
+                "cloudflare_d1_configured": is_d1,
                 "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
             })
             return
 
-        # Fetch Book Catalog (Asynchronous Query with Fallback)
+        # Fetch Book Catalog (Cloudflare D1 Query with Fallback)
         if path == "/api/books":
-            # Attempt Cloud Supabase Query asynchronously
-            if supabase_client.is_configured:
+            if d1_client.is_configured:
                 try:
-                    future = thread_pool.submit(supabase_client.select_books)
-                    raw_rows = future.result(timeout=DB_TIMEOUT)
+                    raw_rows = d1_client.select_books()
                     mapped_books = [map_db_to_book(row) for row in (raw_rows or [])]
-                    logger.info(f"[API] Retrieved {len(mapped_books)} books from Supabase cloud database.")
+                    logger.info(f"[API] Retrieved {len(mapped_books)} books from Cloudflare D1.")
 
                     # Keep local cache warm
                     if mapped_books:
@@ -457,13 +507,13 @@ class TokobukuHandler(SimpleHTTPRequestHandler):
 
                     self._send_json(
                         mapped_books,
-                        extra_headers={"X-Database-Provider": "cloud-supabase-postgresql"}
+                        extra_headers={"X-Database-Provider": "cloudflare-d1-sqlite"}
                     )
                     return
                 except Exception as err:
-                    logger.warning(f"[API] Cloud Supabase query failed ({err}). Falling back to local store.")
+                    logger.warning(f"[API] Cloudflare D1 query failed ({err}). Falling back to local storage.")
 
-            # Graceful Fallback to Local Storage
+            # Graceful Fallback
             local_books = load_books_local()
             self._send_json(
                 local_books,
@@ -471,7 +521,7 @@ class TokobukuHandler(SimpleHTTPRequestHandler):
             )
             return
 
-        # Fallback to standard static file serving
+        # Fallback to static asset serving
         super().do_GET()
 
     # --------------------------------------------------------------------------
@@ -495,17 +545,16 @@ class TokobukuHandler(SimpleHTTPRequestHandler):
             saved_book = None
             db_provider = "local-fallback"
 
-            # 1. Try Cloud Supabase Upsert
-            if supabase_client.is_configured:
+            # 1. Attempt Cloudflare D1 Upsert
+            if d1_client.is_configured:
                 try:
                     db_row = map_book_to_db(payload)
-                    future = thread_pool.submit(supabase_client.upsert_book, db_row)
-                    saved_row = future.result(timeout=DB_TIMEOUT)
-                    saved_book = map_db_to_book(saved_row)
-                    db_provider = "cloud-supabase-postgresql"
-                    logger.info(f"[API] Successfully saved book '{saved_book.get('title')}' to Supabase cloud.")
+                    d1_client.upsert_book(db_row)
+                    saved_book = map_db_to_book(db_row)
+                    db_provider = "cloudflare-d1-sqlite"
+                    logger.info(f"[API] Successfully saved book '{saved_book.get('title')}' to Cloudflare D1.")
                 except Exception as err:
-                    logger.error(f"[API] Supabase upsert error: {err}. Executing local fallback save.")
+                    logger.error(f"[API] Cloudflare D1 upsert error: {err}. Executing local fallback save.")
 
             # 2. Local Fallback Persistence
             local_books = load_books_local()
@@ -514,7 +563,6 @@ class TokobukuHandler(SimpleHTTPRequestHandler):
                 if not saved_book.get("id"):
                     saved_book["id"] = slugify(saved_book.get("title", f"buku-{int(time.time())}"))
 
-            # Update in local list
             existing_idx = None
             for idx, b in enumerate(local_books):
                 if b.get("id") == saved_book.get("id") or (saved_book.get("altId") and b.get("altId") == saved_book.get("altId")):
@@ -584,15 +632,14 @@ class TokobukuHandler(SimpleHTTPRequestHandler):
             target_id = path.replace("/api/books/", "").strip()
             db_provider = "local-fallback"
 
-            # 1. Delete from Supabase
-            if supabase_client.is_configured:
+            # 1. Delete from Cloudflare D1
+            if d1_client.is_configured:
                 try:
-                    future = thread_pool.submit(supabase_client.delete_book, target_id)
-                    future.result(timeout=DB_TIMEOUT)
-                    db_provider = "cloud-supabase-postgresql"
-                    logger.info(f"[API] Deleted book ID '{target_id}' from Supabase cloud.")
+                    d1_client.delete_book(target_id)
+                    db_provider = "cloudflare-d1-sqlite"
+                    logger.info(f"[API] Deleted book ID '{target_id}' from Cloudflare D1.")
                 except Exception as err:
-                    logger.error(f"[API] Failed deleting from Supabase: {err}")
+                    logger.error(f"[API] Failed deleting from Cloudflare D1: {err}")
 
             # 2. Delete from local cache
             local_books = load_books_local()
@@ -614,18 +661,17 @@ class TokobukuHandler(SimpleHTTPRequestHandler):
 
 def run():
     server_address = (HOST, PORT)
-    httpd = ThreadingHTTPServer(server_address, TokobukuHandler)
-    db_mode = f"Supabase Cloud ({SUPABASE_URL})" if supabase_client.is_configured else "Local Storage (books.json)"
-    logger.info(f"Darussholah Tokobuku Server active at http://localhost:{PORT}")
+    httpd = HTTPServer(server_address, TokobukuHandler)
+    db_mode = f"Cloudflare D1 SQLite ({CF_DATABASE_ID})" if d1_client.is_configured else "Local Storage (books.json)"
+    logger.info(f"Darussholah Tokobuku Server active at http://{HOST or 'localhost'}:{PORT}")
     logger.info(f"Database Mode: {db_mode}")
-    logger.info(f"Healthcheck: http://localhost:{PORT}/api/health")
+    logger.info(f"Healthcheck: http://{HOST or 'localhost'}:{PORT}/api/health")
 
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        logger.info("Server shutting down gracefully...")
+        logger.info("Server shutting down cleanly...")
         httpd.server_close()
-        thread_pool.shutdown(wait=False)
 
 
 if __name__ == "__main__":

@@ -98,8 +98,9 @@ services:
       dockerfile: Dockerfile
       args:
         PORT: ${PORT:-8000}
-        SUPABASE_URL: ${SUPABASE_URL:-}
-        SUPABASE_KEY: ${SUPABASE_KEY:-}
+        CLOUDFLARE_ACCOUNT_ID: ${CLOUDFLARE_ACCOUNT_ID:-}
+        CLOUDFLARE_D1_DATABASE_ID: ${CLOUDFLARE_D1_DATABASE_ID:-}
+        CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN:-}
     container_name: darussholah_tokobuku
     restart: unless-stopped
     ports:
@@ -107,8 +108,9 @@ services:
     environment:
       - PORT=${PORT:-8000}
       - HOST=0.0.0.0
-      - SUPABASE_URL=${SUPABASE_URL:-}
-      - SUPABASE_KEY=${SUPABASE_KEY:-}
+      - CLOUDFLARE_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT_ID:-}
+      - CLOUDFLARE_D1_DATABASE_ID=${CLOUDFLARE_D1_DATABASE_ID:-}
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN:-}
       - PYTHONUNBUFFERED=1
     volumes:
       - ./tokobuku-v2/books.json:/app/books.json
