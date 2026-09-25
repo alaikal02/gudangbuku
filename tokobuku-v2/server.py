@@ -26,8 +26,16 @@ logging.basicConfig(
 )
 logger = logging.getLogger("tokobuku.d1")
 
-# Environment Configurations (Injected via Cloudflare / Docker Environment)
-PORT = int(os.environ.get("PORT", sys.argv[1] if len(sys.argv) > 1 else 8000))
+def _resolve_port():
+    env_p = os.environ.get("PORT")
+    if env_p and env_p.isdigit():
+        return int(env_p)
+    for arg in sys.argv[1:]:
+        if arg.isdigit():
+            return int(arg)
+    return 8000
+
+PORT = _resolve_port()
 HOST = os.environ.get("HOST", "0.0.0.0")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BOOKS_FILE = os.path.join(BASE_DIR, "books.json")
@@ -408,9 +416,364 @@ class CloudflareD1Client:
         sql = "DELETE FROM books WHERE id = ?"
         self.execute_query(sql, [str(book_id)])
 
+    def check_table_exists(self, table_name="books"):
+        """Validates if 'books' table exists within the Cloudflare D1 database."""
+        try:
+            sql = "SELECT name FROM sqlite_master WHERE type='table' AND name = ?"
+            res = self.execute_query(sql, [table_name])
+            return bool(res and len(res) > 0)
+        except Exception as e:
+            logger.warning(f"[CLOUDFLARE_D1] Table existence check warning: {e}")
+            return False
+
+    def count_books(self):
+        """Returns the total number of records currently in the 'books' table."""
+        try:
+            sql = "SELECT COUNT(*) as count FROM books"
+            res = self.execute_query(sql)
+            if res and len(res) > 0:
+                return int(res[0].get("count", 0))
+            return 0
+        except Exception as e:
+            logger.warning(f"[CLOUDFLARE_D1] Book count query warning: {e}")
+            return 0
+
+    def init_schema(self):
+        """
+        Executes automated D1 schema migration.
+        Explicitly maps out all 14 required product fields:
+        title (TEXT), author (TEXT), genre (TEXT), publisher (TEXT),
+        published_date (TEXT), isbn (TEXT), pages (INTEGER), length_cm (INTEGER),
+        width_cm (INTEGER), weight_gram (INTEGER), original_price (INTEGER),
+        selling_price (INTEGER), synopsis (TEXT), and warranty (TEXT).
+        """
+        sql_table = """
+            CREATE TABLE IF NOT EXISTS books (
+                id TEXT PRIMARY KEY,
+                title TEXT NOT NULL,
+                author TEXT NOT NULL,
+                genre TEXT NOT NULL DEFAULT 'umum',
+                publisher TEXT NOT NULL DEFAULT 'Darussholah',
+                published_date TEXT NOT NULL DEFAULT '2026',
+                isbn TEXT NOT NULL DEFAULT 'Belum Terdaftar',
+                pages INTEGER NOT NULL DEFAULT 180,
+                length_cm INTEGER NOT NULL DEFAULT 21,
+                width_cm INTEGER NOT NULL DEFAULT 14,
+                thickness_cm REAL NOT NULL DEFAULT 1.5,
+                weight_gram INTEGER NOT NULL DEFAULT 200,
+                original_price INTEGER NOT NULL DEFAULT 0,
+                selling_price INTEGER NOT NULL DEFAULT 0,
+                synopsis TEXT NOT NULL DEFAULT '',
+                warranty TEXT NOT NULL DEFAULT 'Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.',
+                format TEXT NOT NULL DEFAULT 'print',
+                status TEXT NOT NULL DEFAULT 'normal',
+                cover_img TEXT DEFAULT '',
+                cover_class TEXT DEFAULT '',
+                metadata TEXT DEFAULT '{}',
+                created_at TEXT DEFAULT (datetime('now')),
+                updated_at TEXT DEFAULT (datetime('now'))
+            );
+        """
+        self.execute_query(sql_table)
+        self.execute_query("CREATE INDEX IF NOT EXISTS idx_books_isbn ON books(isbn);")
+        self.execute_query("CREATE INDEX IF NOT EXISTS idx_books_genre ON books(genre);")
+        self.execute_query("CREATE INDEX IF NOT EXISTS idx_books_created_at ON books(created_at DESC);")
+        logger.info("[CLOUDFLARE_D1] Automated schema migration: 'books' table & indexes initialized.")
+
+    def seed_initial_books(self):
+        """
+        Performs automated bulk seeding for all 6 catalog data models
+        (Pengantar Kaidah Fiqh, Ta'lim Muta'allim, Ilmu Sharaf,
+        Fathul Qorib Zaman Now, Asma'ul Husna, Menyingkap Sejuta Permasalahan Fath al-Qarib).
+        """
+        logger.info(f"[CLOUDFLARE_D1] Initiating automated bulk seeding ({len(DEFAULT_SEEDED_BOOKS)} catalog models)...")
+        seeded_count = 0
+        for book in DEFAULT_SEEDED_BOOKS:
+            db_row = map_book_to_db(book)
+            self.upsert_book(db_row)
+            seeded_count += 1
+        logger.info(f"[CLOUDFLARE_D1] Bulk data seeding complete: {seeded_count} records inserted.")
+        return seeded_count
+
+    def ensure_schema_and_seed(self):
+        """
+        Startup Validation Check:
+        1. Validates table existence; auto-executes schema migration if missing.
+        2. Validates record count; if newly created and empty, bulk-inserts all 6 catalog books.
+        Stateless, serverless-safe, and runs completely in the background.
+        """
+        if not self.is_configured:
+            logger.info("[CLOUDFLARE_D1] Credentials not set. Automated D1 validation skipped.")
+            return {"status": "SKIPPED", "reason": "No credentials configured"}
+
+        try:
+            has_table = self.check_table_exists("books")
+            if not has_table:
+                logger.info("[CLOUDFLARE_D1] 'books' table not detected. Starting schema initialization...")
+                self.init_schema()
+
+            count = self.count_books()
+            if count == 0:
+                logger.info("[CLOUDFLARE_D1] 'books' table is empty. Executing automated bulk seeding...")
+                seeded = self.seed_initial_books()
+                return {"status": "INITIALIZED_AND_SEEDED", "seeded": seeded}
+
+            logger.info(f"[CLOUDFLARE_D1] Startup validation confirmed. 'books' table active with {count} records.")
+            return {"status": "READY", "count": count}
+        except Exception as e:
+            logger.warning(f"[CLOUDFLARE_D1] Schema handshake notice: {e}")
+            return {"status": "ERROR", "error": str(e)}
+
+
+# ==============================================================================
+# 2.1 CATALOG DATA SEEDING MODELS (6 Production Books)
+# ==============================================================================
+
+DEFAULT_SEEDED_BOOKS = [
+    {
+        "id": "pengantar-kaidah-fiqh",
+        "altId": "pengantar-kaidah-fiqh-saku",
+        "title": "Pengantar Kaidah Fiqh",
+        "author": "K.H. A. Yasin Asymuni",
+        "genre": "fiqih",
+        "publisher": "Darussholah",
+        "published_date": "2026",
+        "isbn": "978-602-0853-26-6",
+        "pages": 120,
+        "length_cm": 21,
+        "width_cm": 14,
+        "thickness_cm": 1.2,
+        "weight_gram": 150,
+        "original_price": 50000,
+        "selling_price": 45000,
+        "synopsis": "Penjelasan sistematis seputar kaidah-kaidah fikih penting (Qawa'id Fiqhiyyah) madzhab Syafi'i untuk membimbing santri dalam memahami dasar penetapan hukum Islam dan menganalisis persoalan-persoalan kontemporer.",
+        "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
+        "format": "print",
+        "status": "new",
+        "cover_img": "",
+        "cover_class": "bg-gradient-to-br from-emerald-900 via-teal-900 to-emerald-950",
+        "marketplace_links": {"tokopedia": "https://tokopedia.com", "shopee": "https://shopee.co.id", "whatsapp_sales": "https://wa.me"}
+    },
+    {
+        "id": "terjemah-ta-lim-muta-allim",
+        "altId": "terjemah-talimul-mutaallim-saku",
+        "title": "Ta'lim Muta'allim",
+        "author": "Syaikh Az-Zarnuji",
+        "genre": "akhlak",
+        "publisher": "Darussholah",
+        "published_date": "2026",
+        "isbn": "978-602-0853-27-3",
+        "pages": 180,
+        "length_cm": 21,
+        "width_cm": 14,
+        "thickness_cm": 1.5,
+        "weight_gram": 200,
+        "original_price": 65000,
+        "selling_price": 65000,
+        "synopsis": "Kitab rujukan paling otentik seputar etika belajar, memilih guru, memilih teman, adab terhadap ilmu dan penghormatan kepada ustadz agar ilmu yang didapatkan berkah dan bermanfaat di dunia maupun akhirat.",
+        "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
+        "format": "print",
+        "status": "normal",
+        "cover_img": "",
+        "cover_class": "bg-gradient-to-br from-stone-900 via-amber-950 to-stone-950",
+        "marketplace_links": {"tokopedia": "https://tokopedia.com", "shopee": "https://shopee.co.id", "whatsapp_sales": "https://wa.me"}
+    },
+    {
+        "id": "nadham-qaidah-sharfiyyah",
+        "altId": "nadham-qaidah-sharfiyyah-saku",
+        "title": "Ilmu Sharaf",
+        "author": "K.H. M. Anwar",
+        "genre": "tatabahasa",
+        "publisher": "Darussholah",
+        "published_date": "2026",
+        "isbn": "978-602-0853-20-4",
+        "pages": 96,
+        "length_cm": 14,
+        "width_cm": 10,
+        "thickness_cm": 1.0,
+        "weight_gram": 120,
+        "original_price": 55000,
+        "selling_price": 55000,
+        "synopsis": "Buku saku praktis yang memuat kaidah ilmu sharaf dan bait-bait Nadham Qaidah Sharfiyyah untuk memudahkan para santri menghafal dan memahami perubahan kata (tashrif) dalam tata bahasa Arab secara cepat.",
+        "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
+        "format": "print",
+        "status": "bestseller",
+        "cover_img": "",
+        "cover_class": "bg-gradient-to-br from-indigo-950 via-slate-900 to-indigo-900",
+        "marketplace_links": {"tokopedia": "https://tokopedia.com", "shopee": "https://shopee.co.id", "whatsapp_sales": "https://wa.me"}
+    },
+    {
+        "id": "trjmh-f-qorib-zaman-now",
+        "altId": "trjmh-fqorib-zaman-now-saku",
+        "title": "Fathul Qorib Zaman Now",
+        "author": "Tim Redaksi Darussholah",
+        "genre": "fiqih",
+        "publisher": "Darussholah",
+        "published_date": "2026",
+        "isbn": "978-602-0853-21-1",
+        "pages": 180,
+        "length_cm": 14,
+        "width_cm": 10,
+        "thickness_cm": 1.5,
+        "weight_gram": 180,
+        "original_price": 75000,
+        "selling_price": 60000,
+        "synopsis": "Terjemah Kitab Fathul Qorib Al-Mujib yang disajikan secara kekinian dengan bahasa yang mudah dicerna oleh generasi millenial dan santri era digital, tanpa mengurangi orisinalitas hukum fikih Syafi'iyah.",
+        "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
+        "format": "print",
+        "status": "new",
+        "cover_img": "",
+        "cover_class": "bg-gradient-to-br from-emerald-900 via-green-900 to-stone-900",
+        "marketplace_links": {"tokopedia": "https://tokopedia.com", "shopee": "https://shopee.co.id", "whatsapp_sales": "https://wa.me"}
+    },
+    {
+        "id": "cerita-indah-dibalik-asmaul-husna",
+        "altId": "cerita-indah-dibalik-asmaul-husna-saku",
+        "title": "Asma'ul Husna",
+        "author": "K.H. Mustofa Bisri / Tim Darussholah",
+        "genre": "aqidah",
+        "publisher": "Darussholah",
+        "published_date": "2026",
+        "isbn": "978-602-0853-25-9",
+        "pages": 240,
+        "length_cm": 20,
+        "width_cm": 14,
+        "thickness_cm": 2.0,
+        "weight_gram": 290,
+        "original_price": 150000,
+        "selling_price": 140000,
+        "synopsis": "Buku inspiratif yang mengisahkan cerita indah di balik makna 99 Nama Allah (Asma'ul Husna) berdasarkan kitab Al-Maqshodul Asna Fi Syarhi Asma'illahil Husna karya Imam Al-Ghazali, memudahkan santri membumikan tauhid dan akhlak ilahiyah dalam kehidupan sehari-hari.",
+        "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
+        "format": "print",
+        "status": "bestseller",
+        "cover_img": "/uploads/1790069869_cidbah-depan-siap.png",
+        "cover_class": "",
+        "marketplace_links": {"tokopedia": "https://tokopedia.com", "shopee": "https://shopee.co.id", "whatsapp_sales": "https://wa.me"}
+    },
+    {
+        "id": "menyingkap-fathal-qarib",
+        "altId": "menyingkap-sejuta-permasalahan-fath-al-qarib-saku",
+        "title": "Menyingkap Sejuta Permasalahan Fath al-Qarib",
+        "author": "Lembaga Kajian Fikih Darussholah",
+        "genre": "fiqih",
+        "publisher": "Darussholah",
+        "published_date": "2026",
+        "isbn": "978-602-0853-22-8",
+        "pages": 310,
+        "length_cm": 21,
+        "width_cm": 14,
+        "thickness_cm": 2.2,
+        "weight_gram": 350,
+        "original_price": 120000,
+        "selling_price": 120000,
+        "synopsis": "Kajian komprehensif fikih Syafi'iyah yang menyingkap tuntas berbagai problematika ibadah dan muamalah harian berdasarkan matan Taqrib dan Syarah Fath al-Qarib dengan ulasan fatwa lintas mazhab yang otoritatif.",
+        "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
+        "format": "print",
+        "status": "bestseller",
+        "cover_img": "",
+        "cover_class": "bg-gradient-to-br from-emerald-950 via-green-950 to-emerald-900",
+        "marketplace_links": {"tokopedia": "https://tokopedia.com", "shopee": "https://shopee.co.id", "whatsapp_sales": "https://wa.me"}
+    }
+]
+
 
 # Initialize Global Cloudflare D1 Client
 d1_client = CloudflareD1Client(CF_ACCOUNT_ID, CF_DATABASE_ID, CF_API_TOKEN, timeout=D1_TIMEOUT)
+
+
+def verify_local_database_handshake():
+    """
+    Validates the database schema handshake logic locally using Python standard library sqlite3.
+    Ensures that the exact table structure and bulk seeding behave deterministically.
+    """
+    import sqlite3
+    db_test_path = os.path.join(BASE_DIR, "test_handshake.db")
+    try:
+        conn = sqlite3.connect(db_test_path)
+        cur = conn.cursor()
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS books (
+                id TEXT PRIMARY KEY,
+                title TEXT NOT NULL,
+                author TEXT NOT NULL,
+                genre TEXT NOT NULL DEFAULT 'umum',
+                publisher TEXT NOT NULL DEFAULT 'Darussholah',
+                published_date TEXT NOT NULL DEFAULT '2026',
+                isbn TEXT NOT NULL DEFAULT 'Belum Terdaftar',
+                pages INTEGER NOT NULL DEFAULT 180,
+                length_cm INTEGER NOT NULL DEFAULT 21,
+                width_cm INTEGER NOT NULL DEFAULT 14,
+                thickness_cm REAL NOT NULL DEFAULT 1.5,
+                weight_gram INTEGER NOT NULL DEFAULT 200,
+                original_price INTEGER NOT NULL DEFAULT 0,
+                selling_price INTEGER NOT NULL DEFAULT 0,
+                synopsis TEXT NOT NULL DEFAULT '',
+                warranty TEXT NOT NULL DEFAULT 'Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.',
+                format TEXT NOT NULL DEFAULT 'print',
+                status TEXT NOT NULL DEFAULT 'normal',
+                cover_img TEXT DEFAULT '',
+                cover_class TEXT DEFAULT '',
+                metadata TEXT DEFAULT '{}',
+                created_at TEXT DEFAULT (datetime('now')),
+                updated_at TEXT DEFAULT (datetime('now'))
+            );
+        """)
+        for b in DEFAULT_SEEDED_BOOKS:
+            db_row = map_book_to_db(b)
+            cur.execute("""
+                INSERT OR REPLACE INTO books (
+                    id, title, author, genre, publisher, published_date, isbn,
+                    pages, length_cm, width_cm, thickness_cm, weight_gram,
+                    original_price, selling_price, synopsis, warranty,
+                    format, status, cover_img, cover_class, metadata
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                db_row["id"], db_row["title"], db_row["author"], db_row["genre"], db_row["publisher"],
+                db_row["published_date"], db_row["isbn"], db_row["pages"], db_row["length_cm"],
+                db_row["width_cm"], db_row["thickness_cm"], db_row["weight_gram"],
+                db_row["original_price"], db_row["selling_price"], db_row["synopsis"],
+                db_row["warranty"], db_row["format"], db_row["status"], db_row["cover_img"],
+                db_row["cover_class"], db_row["metadata"]
+            ))
+        conn.commit()
+        cur.execute("SELECT COUNT(*) FROM books")
+        count = cur.fetchone()[0]
+        cur.execute("SELECT id, title, length_cm, width_cm, weight_gram, selling_price FROM books")
+        rows = cur.fetchall()
+        conn.close()
+        if os.path.exists(db_test_path):
+            os.remove(db_test_path)
+        logger.info(f"[HANDSHAKE_TEST] Local SQLite handshake OK: {count} books seeded.")
+        return {"success": True, "count": count, "rows": rows}
+    except Exception as err:
+        logger.error(f"[HANDSHAKE_TEST] Local handshake test failed: {err}")
+        if os.path.exists(db_test_path):
+            try:
+                os.remove(db_test_path)
+            except Exception:
+                pass
+        return {"success": False, "error": str(err)}
+
+
+def init_database_handshake():
+    """
+    Automated startup validation check and schema handshake.
+    If D1 credentials are set, ensures table exists and seeds 6 catalog books.
+    If local fallback, ensures books.json has the 6 catalog books.
+    Runs silently without breaking stateless serverless handlers.
+    """
+    logger.info("[STARTUP] Initializing database handshake and automated schema validation...")
+    if d1_client.is_configured:
+        d1_result = d1_client.ensure_schema_and_seed()
+        logger.info(f"[STARTUP] Cloudflare D1 Handshake: {d1_result}")
+    else:
+        logger.info("[STARTUP] Cloudflare D1 credentials not supplied in environment. Validating local fallback storage...")
+        local_books = load_books_local()
+        if not local_books:
+            logger.info(f"[STARTUP] Local fallback empty. Seeding {len(DEFAULT_SEEDED_BOOKS)} catalog models...")
+            seeded = [map_db_to_book(map_book_to_db(b)) for b in DEFAULT_SEEDED_BOOKS]
+            save_books_local(seeded)
+            logger.info("[STARTUP] Local fallback storage initialized.")
 
 
 # ==============================================================================
@@ -660,6 +1023,9 @@ class TokobukuHandler(SimpleHTTPRequestHandler):
 # ==============================================================================
 
 def run():
+    # 1. Startup Database Validation & Handshake Check
+    init_database_handshake()
+
     server_address = (HOST, PORT)
     httpd = HTTPServer(server_address, TokobukuHandler)
     db_mode = f"Cloudflare D1 SQLite ({CF_DATABASE_ID})" if d1_client.is_configured else "Local Storage (books.json)"
@@ -675,4 +1041,8 @@ def run():
 
 
 if __name__ == "__main__":
+    if "--verify-handshake" in sys.argv:
+        test_res = verify_local_database_handshake()
+        print(json.dumps(test_res, indent=2))
+        sys.exit(0 if test_res.get("success") else 1)
     run()

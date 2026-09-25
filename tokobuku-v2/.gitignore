@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+test_handshake.db
+.env
+.env.local
+node_modules/
+.wrangler/

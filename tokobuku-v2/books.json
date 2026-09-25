@@ -1,89 +1,28 @@
 [
   {
-    "id": "nadham-qaidah-sharfiyyah",
-    "altId": "nadham-qaidah-sharfiyyah-saku-saku",
-    "title": "Nadham Qaidah sharfiyyah (saku)",
-    "author": "K.H. M. Anwar",
-    "genre": "tatabahasa",
-    "publisher": "Darussholah",
-    "published_date": "2026",
-    "isbn": "978-602-0853-20-4",
-    "pages": 180,
-    "length_cm": 21.0,
-    "width_cm": 14.0,
-    "weight_gram": 200,
-    "original_price": 55000,
-    "selling_price": 55000,
-    "synopsis": "Buku saku praktis yang memuat bait-bait Nadham Qaidah Sharfiyyah untuk memudahkan para santri menghafal dan memahami perubahan kata (tashrif) dalam tata bahasa Arab. Sangat cocok bagi santri tingkat dasar (Ibtidaiyah) untuk hafalan harian.",
-    "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
-    "price": 55000,
-    "originalPrice": 55000,
-    "discount": 0,
-    "format": "print",
-    "status": "bestseller",
-    "coverImg": "",
-    "coverClass": "bg-gradient-to-br from-indigo-950 via-slate-900 to-indigo-900",
-    "marketplace_links": {
-      "shopee": null,
-      "tokopedia": null,
-      "whatsapp_sales": null
-    },
-    "dimensions": {
-      "width_cm": 14.0,
-      "height_cm": 21.0,
-      "length_cm": 21.0,
-      "thickness_cm": 1.5,
-      "type": "Standar"
-    },
-    "pricing": {
-      "original_price": 55000,
-      "discount_percentage": 0,
-      "selling_price": 55000,
-      "currency": "IDR"
-    },
-    "specs": {
-      "language": "Indonesia & Arab",
-      "pages": "180 Halaman",
-      "size": "14.0 × 21.0 × 1.5 cm",
-      "width": "14.0 cm",
-      "height": "21.0 cm",
-      "length": "21.0 cm",
-      "thickness": "1.5 cm",
-      "weight": "200 gram",
-      "releaseDate": "2026",
-      "publisher": "Darussholah"
-    },
-    "samplePages": [
-      {
-        "left": "<h2>Nadham Qaidah sharfiyyah (saku)</h2><p>Buku ini diterbitkan secara resmi oleh Darussholah.</p><p>Buku saku praktis yang memuat bait-bait Nadham Qaidah Sharfiyyah untuk memudahkan para santri menghafal dan memahami perubahan kata (tashrif) dalam tata bahasa Arab. Sangat cocok bagi santri tingkat dasar (Ibtidaiyah) untuk hafalan harian.</p>",
-        "right": "<h2>DAFTAR ISI & SPESIFIKASI</h2><p>Kategori: TATABAHASA<br>ISBN: 978-602-0853-20-4<br>Tebal: 180 Halaman<br>Dimensi: 14.0 × 21.0 × 1.5 cm</p>"
-      }
-    ]
-  },
-  {
-    "id": "trjmh-f-qorib-zaman-now",
-    "altId": "trjmh-fqorib-zaman-now-saku",
-    "title": "Trjmh F.Qorib Zaman Now (saku)",
-    "author": "Tim Redaksi Darussholah",
+    "id": "pengantar-kaidah-fiqh",
+    "altId": "pengantar-kaidah-fiqh-saku",
+    "title": "Pengantar Kaidah Fiqh",
+    "author": "K.H. A. Yasin Asymuni",
     "genre": "fiqih",
     "publisher": "Darussholah",
     "published_date": "2026",
-    "isbn": "978-602-0853-21-1",
-    "pages": 180,
+    "isbn": "978-602-0853-26-6",
+    "pages": 120,
     "length_cm": 21.0,
     "width_cm": 14.0,
-    "weight_gram": 180,
-    "original_price": 75000,
-    "selling_price": 60000,
-    "synopsis": "Terjemah Kitab Fathul Qorib Al-Mujib yang disajikan secara kekinian dengan bahasa yang mudah dicerna oleh generasi millenial dan santri era digital, tanpa mengurangi orisinalitas hukum fikih fiqih Syafi'iyah.",
+    "weight_gram": 150,
+    "original_price": 50000,
+    "selling_price": 45000,
+    "synopsis": "Penjelasan sistematis seputar kaidah-kaidah fikih penting (Qawa'id Fiqhiyyah) madzhab Syafi'i untuk membimbing santri dalam memahami dasar penetapan hukum Islam dan menganalisis persoalan-persoalan kontemporer.",
     "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
-    "price": 60000,
-    "originalPrice": 75000,
-    "discount": 20,
+    "price": 45000,
+    "originalPrice": 50000,
+    "discount": 10,
     "format": "print",
     "status": "new",
     "coverImg": "",
-    "coverClass": "bg-gradient-to-br from-emerald-900 via-green-900 to-stone-900",
+    "coverClass": "bg-gradient-to-br from-indigo-950 via-slate-900 to-indigo-900",
     "marketplace_links": {
       "tokopedia": "https://tokopedia.com",
       "shopee": "https://shopee.co.id",
@@ -97,222 +36,39 @@
       "type": "Standar"
     },
     "pricing": {
-      "original_price": 75000,
-      "discount_percentage": 20,
-      "selling_price": 60000,
-      "currency": "IDR"
-    },
-    "specs": {
-      "language": "Indonesia & Arab",
-      "pages": "180 Halaman",
-      "size": "14.0 × 21.0 × 1.5 cm",
-      "width": "14.0 cm",
-      "height": "21.0 cm",
-      "length": "21.0 cm",
-      "thickness": "1.5 cm",
-      "weight": "180 gram",
-      "releaseDate": "2026",
-      "publisher": "Darussholah"
-    },
-    "samplePages": [
-      {
-        "left": "<h2>Trjmh F.Qorib Zaman Now (saku)</h2><p>Buku ini diterbitkan secara resmi oleh Darussholah.</p><p>Terjemah Kitab Fathul Qorib Al-Mujib yang disajikan secara kekinian dengan bahasa yang mudah dicerna oleh generasi millenial dan santri era digital, tanpa mengurangi orisinalitas hukum fikih fiqih Syafi'iyah.</p>",
-        "right": "<h2>DAFTAR ISI & SPESIFIKASI</h2><p>Kategori: FIQIH<br>ISBN: 978-602-0853-21-1<br>Tebal: 180 Halaman<br>Dimensi: 14.0 × 21.0 × 1.5 cm</p>"
-      }
-    ]
-  },
-  {
-    "id": "fiqih-populer-saku-muin",
-    "altId": "fiqih-populer-saku-trjmh-fmuin-saku",
-    "title": "Fiqih populer saku (trjmh f.mu'in)",
-    "author": "K.H. Hamim Djazuli",
-    "genre": "fiqih",
-    "publisher": "Darussholah",
-    "published_date": "2026",
-    "isbn": "978-602-0853-22-8",
-    "pages": 180,
-    "length_cm": 21.0,
-    "width_cm": 14.0,
-    "weight_gram": 200,
-    "original_price": 120000,
-    "selling_price": 120000,
-    "synopsis": "Buku saku ringkas terjemah Fathul Mu'in. Membahas hukum fikih tingkat menengah madzhab Syafi'i secara lugas dan ringkas, sangat membantu santri senior (Aliyah/Mualimin) merujuk hukum ibadah praktis.",
-    "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
-    "price": 120000,
-    "originalPrice": 120000,
-    "discount": 0,
-    "format": "print",
-    "status": "bestseller",
-    "coverImg": "",
-    "coverClass": "bg-gradient-to-br from-emerald-950 via-green-950 to-emerald-900",
-    "marketplace_links": {
-      "shopee": null,
-      "tokopedia": null,
-      "whatsapp_sales": null
-    },
-    "dimensions": {
-      "width_cm": 14.0,
-      "height_cm": 21.0,
-      "length_cm": 21.0,
-      "thickness_cm": 1.5,
-      "type": "Standar"
-    },
-    "pricing": {
-      "original_price": 120000,
-      "discount_percentage": 0,
-      "selling_price": 120000,
-      "currency": "IDR"
-    },
-    "specs": {
-      "language": "Indonesia & Arab",
-      "pages": "180 Halaman",
-      "size": "14.0 × 21.0 × 1.5 cm",
-      "width": "14.0 cm",
-      "height": "21.0 cm",
-      "length": "21.0 cm",
-      "thickness": "1.5 cm",
-      "weight": "200 gram",
-      "releaseDate": "2026",
-      "publisher": "Darussholah"
-    },
-    "samplePages": [
-      {
-        "left": "<h2>Fiqih populer saku (trjmh f.mu'in)</h2><p>Buku ini diterbitkan secara resmi oleh Darussholah.</p><p>Buku saku ringkas terjemah Fathul Mu'in. Membahas hukum fikih tingkat menengah madzhab Syafi'i secara lugas dan ringkas, sangat membantu santri senior (Aliyah/Mualimin) merujuk hukum ibadah praktis.</p>",
-        "right": "<h2>DAFTAR ISI & SPESIFIKASI</h2><p>Kategori: FIQIH<br>ISBN: 978-602-0853-22-8<br>Tebal: 180 Halaman<br>Dimensi: 14.0 × 21.0 × 1.5 cm</p>"
-      }
-    ]
-  },
-  {
-    "id": "terjemah-bidayatul-hidayah",
-    "altId": "terjemah-bidayatul-hidayah-saku",
-    "title": "Terjemah Bidayatul Hidayah",
-    "author": "Imam Al-Ghazali (Terjemah)",
-    "genre": "akhlak",
-    "publisher": "Darussholah",
-    "published_date": "2026",
-    "isbn": "978-602-0853-24-2",
-    "pages": 180,
-    "length_cm": 21.0,
-    "width_cm": 14.0,
-    "weight_gram": 200,
-    "original_price": 200000,
-    "selling_price": 200000,
-    "synopsis": "Kajian Akhlak Paling Lengkap berdasarkan kitab Bidayatul Hidayah karya Hujjatul Islam Imam Al-Ghazali. Pemandu harian santri dalam menata adab bangun tidur, shalat, bergaul dengan sesama makhluk, dan menjauhi maksiat batin.",
-    "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
-    "price": 200000,
-    "originalPrice": 200000,
-    "discount": 0,
-    "format": "print",
-    "status": "bestseller",
-    "coverImg": "",
-    "coverClass": "bg-gradient-to-br from-amber-950 via-red-955 to-stone-950",
-    "marketplace_links": {
-      "shopee": null,
-      "tokopedia": null,
-      "whatsapp_sales": null
-    },
-    "dimensions": {
-      "width_cm": 14.0,
-      "height_cm": 21.0,
-      "length_cm": 21.0,
-      "thickness_cm": 1.5,
-      "type": "Standar"
-    },
-    "pricing": {
-      "original_price": 200000,
-      "discount_percentage": 0,
-      "selling_price": 200000,
-      "currency": "IDR"
-    },
-    "specs": {
-      "language": "Indonesia & Arab",
-      "pages": "180 Halaman",
-      "size": "14.0 × 21.0 × 1.5 cm",
-      "width": "14.0 cm",
-      "height": "21.0 cm",
-      "length": "21.0 cm",
-      "thickness": "1.5 cm",
-      "weight": "200 gram",
-      "releaseDate": "2026",
-      "publisher": "Darussholah"
-    },
-    "samplePages": [
-      {
-        "left": "<h2>Terjemah Bidayatul Hidayah</h2><p>Buku ini diterbitkan secara resmi oleh Darussholah.</p><p>Kajian Akhlak Paling Lengkap berdasarkan kitab Bidayatul Hidayah karya Hujjatul Islam Imam Al-Ghazali. Pemandu harian santri dalam menata adab bangun tidur, shalat, bergaul dengan sesama makhluk, dan menjauhi maksiat batin.</p>",
-        "right": "<h2>DAFTAR ISI & SPESIFIKASI</h2><p>Kategori: AKHLAK<br>ISBN: 978-602-0853-24-2<br>Tebal: 180 Halaman<br>Dimensi: 14.0 × 21.0 × 1.5 cm</p>"
-      }
-    ]
-  },
-  {
-    "id": "terjemah-matan-al-ajurumiyyah",
-    "altId": "terjemah-makna-gandul-al-jurumiyyah-saku",
-    "title": "Terjemah & Makna Gandul Al-Jurumiyyah",
-    "author": "Abu Abdillah As-Shanhaji",
-    "genre": "tatabahasa",
-    "publisher": "Darussholah",
-    "published_date": "2026",
-    "isbn": "978-602-0853-25-9",
-    "pages": 180,
-    "length_cm": 21.0,
-    "width_cm": 14.0,
-    "weight_gram": 200,
-    "original_price": 45000,
-    "selling_price": 45000,
-    "synopsis": "Matan dasar ilmu nahwu legendaris dilengkapi dengan makna gandul Jawa pegon dan terjemah bahasa Indonesia sistematis. Panduan dasar mutlak bagi siapa saja yang ingin memahami kaidah baca kitab kuning.",
-    "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
-    "price": 45000,
-    "originalPrice": 45000,
-    "discount": 0,
-    "format": "print",
-    "status": "normal",
-    "coverImg": "",
-    "coverClass": "bg-gradient-to-br from-blue-950 via-indigo-950 to-slate-900",
-    "marketplace_links": {
-      "shopee": null,
-      "tokopedia": null,
-      "whatsapp_sales": null
-    },
-    "dimensions": {
-      "width_cm": 14.0,
-      "height_cm": 21.0,
-      "length_cm": 21.0,
-      "thickness_cm": 1.5,
-      "type": "Standar"
-    },
-    "pricing": {
-      "original_price": 45000,
-      "discount_percentage": 0,
+      "original_price": 50000,
+      "discount_percentage": 10,
       "selling_price": 45000,
       "currency": "IDR"
     },
     "specs": {
       "language": "Indonesia & Arab",
-      "pages": "180 Halaman",
+      "pages": "120 Halaman",
       "size": "14.0 × 21.0 × 1.5 cm",
       "width": "14.0 cm",
       "height": "21.0 cm",
       "length": "21.0 cm",
       "thickness": "1.5 cm",
-      "weight": "200 gram",
+      "weight": "150 gram",
       "releaseDate": "2026",
       "publisher": "Darussholah"
     },
     "samplePages": [
       {
-        "left": "<h2>Terjemah & Makna Gandul Al-Jurumiyyah</h2><p>Buku ini diterbitkan secara resmi oleh Darussholah.</p><p>Matan dasar ilmu nahwu legendaris dilengkapi dengan makna gandul Jawa pegon dan terjemah bahasa Indonesia sistematis. Panduan dasar mutlak bagi siapa saja yang ingin memahami kaidah baca kitab kuning.</p>",
-        "right": "<h2>DAFTAR ISI & SPESIFIKASI</h2><p>Kategori: TATABAHASA<br>ISBN: 978-602-0853-25-9<br>Tebal: 180 Halaman<br>Dimensi: 14.0 × 21.0 × 1.5 cm</p>"
+        "left": "<h2>Pengantar Kaidah Fiqh</h2><p>Buku ini diterbitkan secara resmi oleh Darussholah.</p><p>Penjelasan sistematis seputar kaidah-kaidah fikih penting (Qawa'id Fiqhiyyah) madzhab Syafi'i untuk membimbing santri dalam memahami dasar penetapan hukum Islam dan menganalisis persoalan-persoalan kontemporer.</p>",
+        "right": "<h2>DAFTAR ISI & SPESIFIKASI</h2><p>Kategori: FIQIH<br>ISBN: 978-602-0853-26-6<br>Tebal: 120 Halaman<br>Dimensi: 14.0 × 21.0 × 1.5 cm</p>"
       }
     ]
   },
   {
     "id": "terjemah-ta-lim-muta-allim",
-    "altId": "terjemah-talimul-mutaallim-adab-penuntut-ilmu-saku",
-    "title": "Terjemah Ta'limul Muta'allim (Adab Penuntut Ilmu)",
+    "altId": "terjemah-talimul-mutaallim-saku",
+    "title": "Ta'lim Muta'allim",
     "author": "Syaikh Az-Zarnuji",
     "genre": "akhlak",
     "publisher": "Darussholah",
     "published_date": "2026",
-    "isbn": "978-602-0853-26-6",
+    "isbn": "978-602-0853-27-3",
     "pages": 180,
     "length_cm": 21.0,
     "width_cm": 14.0,
@@ -327,11 +83,11 @@
     "format": "print",
     "status": "normal",
     "coverImg": "",
-    "coverClass": "bg-gradient-to-br from-stone-900 via-amber-950 to-stone-950",
+    "coverClass": "bg-gradient-to-br from-indigo-950 via-slate-900 to-indigo-900",
     "marketplace_links": {
-      "shopee": null,
-      "tokopedia": null,
-      "whatsapp_sales": null
+      "tokopedia": "https://tokopedia.com",
+      "shopee": "https://shopee.co.id",
+      "whatsapp_sales": "https://wa.me"
     },
     "dimensions": {
       "width_cm": 14.0,
@@ -360,39 +116,222 @@
     },
     "samplePages": [
       {
-        "left": "<h2>Terjemah Ta'limul Muta'allim (Adab Penuntut Ilmu)</h2><p>Buku ini diterbitkan secara resmi oleh Darussholah.</p><p>Kitab rujukan paling otentik seputar etika belajar, memilih guru, memilih teman, adab terhadap ilmu dan penghormatan kepada ustadz agar ilmu yang didapatkan berkah dan bermanfaat di dunia maupun akhirat.</p>",
-        "right": "<h2>DAFTAR ISI & SPESIFIKASI</h2><p>Kategori: AKHLAK<br>ISBN: 978-602-0853-26-6<br>Tebal: 180 Halaman<br>Dimensi: 14.0 × 21.0 × 1.5 cm</p>"
+        "left": "<h2>Ta'lim Muta'allim</h2><p>Buku ini diterbitkan secara resmi oleh Darussholah.</p><p>Kitab rujukan paling otentik seputar etika belajar, memilih guru, memilih teman, adab terhadap ilmu dan penghormatan kepada ustadz agar ilmu yang didapatkan berkah dan bermanfaat di dunia maupun akhirat.</p>",
+        "right": "<h2>DAFTAR ISI & SPESIFIKASI</h2><p>Kategori: AKHLAK<br>ISBN: 978-602-0853-27-3<br>Tebal: 180 Halaman<br>Dimensi: 14.0 × 21.0 × 1.5 cm</p>"
+      }
+    ]
+  },
+  {
+    "id": "nadham-qaidah-sharfiyyah",
+    "altId": "nadham-qaidah-sharfiyyah-saku",
+    "title": "Ilmu Sharaf",
+    "author": "K.H. M. Anwar",
+    "genre": "tatabahasa",
+    "publisher": "Darussholah",
+    "published_date": "2026",
+    "isbn": "978-602-0853-20-4",
+    "pages": 96,
+    "length_cm": 14.0,
+    "width_cm": 10.0,
+    "weight_gram": 120,
+    "original_price": 55000,
+    "selling_price": 55000,
+    "synopsis": "Buku saku praktis yang memuat kaidah ilmu sharaf dan bait-bait Nadham Qaidah Sharfiyyah untuk memudahkan para santri menghafal dan memahami perubahan kata (tashrif) dalam tata bahasa Arab secara cepat.",
+    "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
+    "price": 55000,
+    "originalPrice": 55000,
+    "discount": 0,
+    "format": "print",
+    "status": "bestseller",
+    "coverImg": "",
+    "coverClass": "bg-gradient-to-br from-indigo-950 via-slate-900 to-indigo-900",
+    "marketplace_links": {
+      "tokopedia": "https://tokopedia.com",
+      "shopee": "https://shopee.co.id",
+      "whatsapp_sales": "https://wa.me"
+    },
+    "dimensions": {
+      "width_cm": 10.0,
+      "height_cm": 14.0,
+      "length_cm": 14.0,
+      "thickness_cm": 1.5,
+      "type": "Saku"
+    },
+    "pricing": {
+      "original_price": 55000,
+      "discount_percentage": 0,
+      "selling_price": 55000,
+      "currency": "IDR"
+    },
+    "specs": {
+      "language": "Indonesia & Arab",
+      "pages": "96 Halaman",
+      "size": "10.0 × 14.0 × 1.5 cm",
+      "width": "10.0 cm",
+      "height": "14.0 cm",
+      "length": "14.0 cm",
+      "thickness": "1.5 cm",
+      "weight": "120 gram",
+      "releaseDate": "2026",
+      "publisher": "Darussholah"
+    },
+    "samplePages": [
+      {
+        "left": "<h2>Ilmu Sharaf</h2><p>Buku ini diterbitkan secara resmi oleh Darussholah.</p><p>Buku saku praktis yang memuat kaidah ilmu sharaf dan bait-bait Nadham Qaidah Sharfiyyah untuk memudahkan para santri menghafal dan memahami perubahan kata (tashrif) dalam tata bahasa Arab secara cepat.</p>",
+        "right": "<h2>DAFTAR ISI & SPESIFIKASI</h2><p>Kategori: TATABAHASA<br>ISBN: 978-602-0853-20-4<br>Tebal: 96 Halaman<br>Dimensi: 10.0 × 14.0 × 1.5 cm</p>"
+      }
+    ]
+  },
+  {
+    "id": "trjmh-f-qorib-zaman-now",
+    "altId": "trjmh-fqorib-zaman-now-saku",
+    "title": "Fathul Qorib Zaman Now",
+    "author": "Tim Redaksi Darussholah",
+    "genre": "fiqih",
+    "publisher": "Darussholah",
+    "published_date": "2026",
+    "isbn": "978-602-0853-21-1",
+    "pages": 180,
+    "length_cm": 14.0,
+    "width_cm": 10.0,
+    "weight_gram": 180,
+    "original_price": 75000,
+    "selling_price": 60000,
+    "synopsis": "Terjemah Kitab Fathul Qorib Al-Mujib yang disajikan secara kekinian dengan bahasa yang mudah dicerna oleh generasi millenial dan santri era digital, tanpa mengurangi orisinalitas hukum fikih Syafi'iyah.",
+    "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
+    "price": 60000,
+    "originalPrice": 75000,
+    "discount": 20,
+    "format": "print",
+    "status": "new",
+    "coverImg": "",
+    "coverClass": "bg-gradient-to-br from-indigo-950 via-slate-900 to-indigo-900",
+    "marketplace_links": {
+      "tokopedia": "https://tokopedia.com",
+      "shopee": "https://shopee.co.id",
+      "whatsapp_sales": "https://wa.me"
+    },
+    "dimensions": {
+      "width_cm": 10.0,
+      "height_cm": 14.0,
+      "length_cm": 14.0,
+      "thickness_cm": 1.5,
+      "type": "Saku"
+    },
+    "pricing": {
+      "original_price": 75000,
+      "discount_percentage": 20,
+      "selling_price": 60000,
+      "currency": "IDR"
+    },
+    "specs": {
+      "language": "Indonesia & Arab",
+      "pages": "180 Halaman",
+      "size": "10.0 × 14.0 × 1.5 cm",
+      "width": "10.0 cm",
+      "height": "14.0 cm",
+      "length": "14.0 cm",
+      "thickness": "1.5 cm",
+      "weight": "180 gram",
+      "releaseDate": "2026",
+      "publisher": "Darussholah"
+    },
+    "samplePages": [
+      {
+        "left": "<h2>Fathul Qorib Zaman Now</h2><p>Buku ini diterbitkan secara resmi oleh Darussholah.</p><p>Terjemah Kitab Fathul Qorib Al-Mujib yang disajikan secara kekinian dengan bahasa yang mudah dicerna oleh generasi millenial dan santri era digital, tanpa mengurangi orisinalitas hukum fikih Syafi'iyah.</p>",
+        "right": "<h2>DAFTAR ISI & SPESIFIKASI</h2><p>Kategori: FIQIH<br>ISBN: 978-602-0853-21-1<br>Tebal: 180 Halaman<br>Dimensi: 10.0 × 14.0 × 1.5 cm</p>"
       }
     ]
   },
   {
     "id": "cerita-indah-dibalik-asmaul-husna",
     "altId": "cerita-indah-dibalik-asmaul-husna-saku",
-    "title": "Cerita Indah Dibalik Asmaul Husna",
-    "author": "Darussholah",
+    "title": "Asma'ul Husna",
+    "author": "K.H. Mustofa Bisri / Tim Darussholah",
+    "genre": "aqidah",
+    "publisher": "Darussholah",
+    "published_date": "2026",
+    "isbn": "978-602-0853-25-9",
+    "pages": 240,
+    "length_cm": 20.0,
+    "width_cm": 14.0,
+    "weight_gram": 290,
+    "original_price": 150000,
+    "selling_price": 140000,
+    "synopsis": "Buku inspiratif yang mengisahkan cerita indah di balik makna 99 Nama Allah (Asma'ul Husna) berdasarkan kitab Al-Maqshodul Asna Fi Syarhi Asma'illahil Husna karya Imam Al-Ghazali, memudahkan santri membumikan tauhid dan akhlak ilahiyah dalam kehidupan sehari-hari.",
+    "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
+    "price": 140000,
+    "originalPrice": 150000,
+    "discount": 7,
+    "format": "print",
+    "status": "bestseller",
+    "coverImg": "",
+    "coverClass": "bg-gradient-to-br from-indigo-950 via-slate-900 to-indigo-900",
+    "marketplace_links": {
+      "tokopedia": "https://tokopedia.com",
+      "shopee": "https://shopee.co.id",
+      "whatsapp_sales": "https://wa.me"
+    },
+    "dimensions": {
+      "width_cm": 14.0,
+      "height_cm": 20.0,
+      "length_cm": 20.0,
+      "thickness_cm": 1.5,
+      "type": "Standar"
+    },
+    "pricing": {
+      "original_price": 150000,
+      "discount_percentage": 7,
+      "selling_price": 140000,
+      "currency": "IDR"
+    },
+    "specs": {
+      "language": "Indonesia & Arab",
+      "pages": "240 Halaman",
+      "size": "14.0 × 20.0 × 1.5 cm",
+      "width": "14.0 cm",
+      "height": "20.0 cm",
+      "length": "20.0 cm",
+      "thickness": "1.5 cm",
+      "weight": "290 gram",
+      "releaseDate": "2026",
+      "publisher": "Darussholah"
+    },
+    "samplePages": [
+      {
+        "left": "<h2>Asma'ul Husna</h2><p>Buku ini diterbitkan secara resmi oleh Darussholah.</p><p>Buku inspiratif yang mengisahkan cerita indah di balik makna 99 Nama Allah (Asma'ul Husna) berdasarkan kitab Al-Maqshodul Asna Fi Syarhi Asma'illahil Husna karya Imam Al-Ghazali, memudahkan santri membumikan tauhid dan akhlak ilahiyah dalam kehidupan sehari-hari.</p>",
+        "right": "<h2>DAFTAR ISI & SPESIFIKASI</h2><p>Kategori: AQIDAH<br>ISBN: 978-602-0853-25-9<br>Tebal: 240 Halaman<br>Dimensi: 14.0 × 20.0 × 1.5 cm</p>"
+      }
+    ]
+  },
+  {
+    "id": "menyingkap-fathal-qarib",
+    "altId": "menyingkap-sejuta-permasalahan-fath-al-qarib-saku",
+    "title": "Menyingkap Sejuta Permasalahan Fath al-Qarib",
+    "author": "Lembaga Kajian Fikih Darussholah",
     "genre": "fiqih",
     "publisher": "Darussholah",
     "published_date": "2026",
-    "isbn": "Belum Terdaftar",
-    "pages": 180,
+    "isbn": "978-602-0853-22-8",
+    "pages": 310,
     "length_cm": 21.0,
     "width_cm": 14.0,
-    "weight_gram": 1300,
-    "original_price": 90000,
-    "selling_price": 140000,
-    "synopsis": "Buku ini menghadirkan ulasan mendalam mengenai 99 Nama Indah Allah (Asma'ul Husna) berdasarkan sari pati kitab klasik monumental 'Al-Maqshodul Asna Fi Syarhi Asma'illahil Husna' karya ulama besar Imam Al-Ghazali. Tidak sekadar memaparkan definisi teks, buku ini dikemas secara informatif dengan menyelipkan kisah-kisah penuh hikmah dan keteladanan yang nyata di balik setiap untaian nama agung-Nya. Sebuah panduan literasi spiritual yang sangat cocok untuk membimbing keluarga, santri, dan masyarakat umum dalam mengenal Allah secara lebih dekat (Ma'rifatullah) sekaligus mengamalkan fadhilahnya demi meraih ketenangan hati dan keberkahan hidup.",
+    "weight_gram": 350,
+    "original_price": 120000,
+    "selling_price": 120000,
+    "synopsis": "Kajian komprehensif fikih Syafi'iyah yang menyingkap tuntas berbagai problematika ibadah dan muamalah harian berdasarkan matan Taqrib dan Syarah Fath al-Qarib dengan ulasan fatwa lintas mazhab yang otoritatif.",
     "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
-    "price": 140000,
-    "originalPrice": 90000,
+    "price": 120000,
+    "originalPrice": 120000,
     "discount": 0,
     "format": "print",
-    "status": "normal",
-    "coverImg": "/uploads/1790069869_cidbah-depan-siap.png",
-    "coverClass": "",
+    "status": "bestseller",
+    "coverImg": "",
+    "coverClass": "bg-gradient-to-br from-indigo-950 via-slate-900 to-indigo-900",
     "marketplace_links": {
-      "shopee": null,
-      "tokopedia": null,
-      "whatsapp_sales": null
+      "tokopedia": "https://tokopedia.com",
+      "shopee": "https://shopee.co.id",
+      "whatsapp_sales": "https://wa.me"
     },
     "dimensions": {
       "width_cm": 14.0,
@@ -402,27 +341,27 @@
       "type": "Standar"
     },
     "pricing": {
-      "original_price": 90000,
+      "original_price": 120000,
       "discount_percentage": 0,
-      "selling_price": 140000,
+      "selling_price": 120000,
       "currency": "IDR"
     },
     "specs": {
       "language": "Indonesia & Arab",
-      "pages": "180 Halaman",
+      "pages": "310 Halaman",
       "size": "14.0 × 21.0 × 1.5 cm",
       "width": "14.0 cm",
       "height": "21.0 cm",
       "length": "21.0 cm",
       "thickness": "1.5 cm",
-      "weight": "1300 gram",
+      "weight": "350 gram",
       "releaseDate": "2026",
       "publisher": "Darussholah"
     },
     "samplePages": [
       {
-        "left": "<h2>Cerita Indah Dibalik Asmaul Husna</h2><p>Buku ini diterbitkan secara resmi oleh Darussholah.</p><p>Buku ini menghadirkan ulasan mendalam mengenai 99 Nama Indah Allah (Asma'ul Husna) berdasarkan sari pati kitab klasik monumental 'Al-Maqshodul Asna Fi Syarhi Asma'illahil Husna' karya ulama besar Imam Al-Ghazali. Tidak sekadar memaparkan definisi teks, buku ini dikemas secara informatif dengan menyelipkan kisah-kisah penuh hikmah dan keteladanan yang nyata di balik setiap untaian nama agung-Nya. Sebuah panduan literasi spiritual yang sangat cocok untuk membimbing keluarga, santri, dan masyarakat umum dalam mengenal Allah secara lebih dekat (Ma'rifatullah) sekaligus mengamalkan fadhilahnya demi meraih ketenangan hati dan keberkahan hidup.</p>",
-        "right": "<h2>DAFTAR ISI & SPESIFIKASI</h2><p>Kategori: FIQIH<br>ISBN: Belum Terdaftar<br>Tebal: 180 Halaman<br>Dimensi: 14.0 × 21.0 × 1.5 cm</p>"
+        "left": "<h2>Menyingkap Sejuta Permasalahan Fath al-Qarib</h2><p>Buku ini diterbitkan secara resmi oleh Darussholah.</p><p>Kajian komprehensif fikih Syafi'iyah yang menyingkap tuntas berbagai problematika ibadah dan muamalah harian berdasarkan matan Taqrib dan Syarah Fath al-Qarib dengan ulasan fatwa lintas mazhab yang otoritatif.</p>",
+        "right": "<h2>DAFTAR ISI & SPESIFIKASI</h2><p>Kategori: FIQIH<br>ISBN: 978-602-0853-22-8<br>Tebal: 310 Halaman<br>Dimensi: 14.0 × 21.0 × 1.5 cm</p>"
       }
     ]
   }
