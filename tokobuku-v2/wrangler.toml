@@ -11,5 +11,5 @@ binding = "ASSETS"
 # Native Cloudflare D1 Database Binding
 [[d1_databases]]
 binding = "DB"
-database_name = "gudangbuku-db"
-database_id = "gudangbuku-db"
+database_name = "gudangbuku"
+database_id = "1d3acb61-827e-45bb-9e6a-76cd265ff677"

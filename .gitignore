@@ -39,3 +39,4 @@ mobile_wms/.flutter-plugins-dependencies
 mobile_wms/.pub-cache/
 mobile_wms/.pub/
 mobile_wms/build/
+.wrangler/
