@@ -1,0 +1,17 @@
+name = "tokobuku-v2"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+
+# Cloudflare Workers Static Assets Configuration
+# Serves index.html, styles.css, app.js, and static assets with edge caching
+[assets]
+directory = "."
+binding = "ASSETS"
+
+# Cloudflare D1 SQLite Database Binding (Native Cloudflare Edge Integration)
+# Bind your D1 database in Cloudflare Dashboard -> Workers -> tokobuku-v2 -> Settings -> Bindings
+# Or configure directly below:
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "tokobuku-db"
+# database_id = "your-d1-database-uuid"
