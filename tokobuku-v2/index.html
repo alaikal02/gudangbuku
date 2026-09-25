@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darussholah | Penerbit Tangan Pertama & Direct Retailer</title>
+  
+  <!-- Meta SEO -->
+  <meta name="description" content="Penerbit tangan pertama Darussholah. Jaminan buku asli langsung dari percetakan. Grosir B2B & Retail. Kirim naskah penulis mayor & hybrid.">
+  <meta name="keywords" content="penerbit buku, beli buku asli, grosir buku, penerbit tangan pertama, kirim naskah, toko buku online, darussholah">
+  <meta name="author" content="Darussholah">
+  
+  <!-- Google Fonts - Inter Only -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP BAR & HERO UTILITIES
+       ======================================================================== -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-left">
+        <span><i class="fas fa-certificate text-accent"></i> 100% Buku Asli Penerbit</span>
+        <span><i class="fas fa-truck"></i> Pengiriman Cepat Seluruh Indonesia</span>
+      </div>
+      <div class="top-bar-right">
+        <span><i class="fas fa-headset text-accent"></i> CS WhatsApp: <strong>0812-3456-7890</strong></span>
+        <span>|</span>
+        <a href="#mitra" class="top-bar-link spa-route"><i class="fas fa-handshake"></i> Info Kemitraan & B2B</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MAIN HEADER & SPA NAVIGATION (CENTERED SEARCH ARCHITECTURE)
+       ======================================================================== -->
+  <header class="main-header">
+    <!-- Main Header Bar: Logo, Centered Search, & Actions -->
+    <div class="header-main-bar">
+      <div class="container header-main-container">
+        <!-- Logo -->
+        <a href="#home" class="logo spa-route">
+          <div class="logo-icon">D</div>
+          <div class="logo-text">
+            DARUSSHOLAH
+            <span>PUBLISHER & RETAILER</span>
+          </div>
+        </a>
+
+        <!-- Live Search Box (Centered) -->
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="header-search" class="search-input" placeholder="Cari Judul, Penulis, ISBN...">
+          <!-- Dropdown search result -->
+          <div id="search-results-dropdown" style="position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid var(--border-color); border-radius: var(--radius-md); box-shadow: var(--shadow-lg); z-index: 1010; display: none; max-height: 300px; overflow-y: auto; margin-top: 6px;"></div>
+        </div>
+
+        <!-- Header Actions: Shopping Bag & Mobile Toggle -->
+        <div class="header-actions">
+          <!-- Cart Action Icon -->
+          <button class="header-btn" id="header-cart-btn" title="Keranjang Belanja">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-badge" id="cart-count-badge" style="display: none;">0</span>
+          </button>
+
+          <!-- Mobile Menu Trigger -->
+          <button class="mobile-menu-toggle" id="mobile-menu-toggle-btn" onclick="toggleMobileNav()" title="Buka Navigasi">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary Bar: Centered Navigation Links -->
+    <nav class="nav-sub-bar" id="nav-sub-bar">
+      <div class="container nav-sub-container">
+        <div class="nav-menu">
+          <a href="#home" class="nav-link active">Home</a>
+          <a href="#katalog" class="nav-link" id="nav-katalog">Katalog Buku</a>
+          <a href="#mitra" class="nav-link">Mitra & B2B</a>
+          <a href="#layanan-penulis" class="nav-link">Layanan Penulis</a>
+          <a href="#tentang-kami" class="nav-link">Tentang Kami</a>
+          <a href="#blog" class="nav-link">Blog & Berita</a>
+          <a href="#kontak" class="nav-link">Kontak</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========================================================================
+       PAGE CONTENT - HOME
+       ======================================================================== -->
+  <main class="page-section active-page" id="home">
+    <!-- Hero Banner (Premium Book releases Focus) -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="section-tag">Direct Retail & Publisher</span>
+          <h1>Penerbit Tangan Pertama: <br><span>Jaminan Buku Asli</span>, Langsung dari Sumbernya.</h1>
+          <p class="hero-description">Kami memproduksi dan mendistribusikan buku berkualitas tinggi secara langsung. Dapatkan harga terbaik, kertas premium, dan jaminan keaslian 100% tanpa perantara.</p>
+          <div class="hero-ctas">
+            <a href="#katalog" class="btn btn-primary spa-route"><i class="fas fa-book-open"></i> Jelajahi Katalog</a>
+            <a href="#layanan-penulis" class="btn btn-secondary spa-route"><i class="fas fa-pen-nib"></i> Kerja Sama Penerbitan</a>
+          </div>
+        </div>
+        <!-- 3D Stack Mockup -->
+        <div class="hero-mockup">
+          <div class="stack-container">
+            <div class="stack-book stack-book-3 bg-indigo-900"></div>
+            <div class="stack-book stack-book-2 bg-emerald-800"></div>
+            <div class="stack-book stack-book-1 bg-slate-900"></div>
+            <div class="book-shadow"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Buy Direct section -->
+    <section class="why-buy-direct">
+      <div class="container why-grid">
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-tags"></i></div>
+          <div class="why-info">
+            <h3>Harga Terbaik</h3>
+            <p>Potongan harga langsung dari penerbit tanpa tambahan margin agen.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+          <div class="why-info">
+            <h3>100% Original</h3>
+            <p>Garansi keaslian kertas bookpaper dan cetakan tajam anti bajakan.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-shipping-fast"></i></div>
+          <div class="why-info">
+            <h3>Pengiriman Cepat</h3>
+            <p>Buku dikirim langsung dari gudang utama kami di hari yang sama.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-boxes"></i></div>
+          <div class="why-info">
+            <h3>Pilihan Lengkap</h3>
+            <p>Seluruh katalog cetak, e-book, dan edisi khusus eksklusif tersedia lengkap.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Books Section (Bestseller & New releases) -->
+    <section class="home-featured-books">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Rekomendasi Utama</span>
+          <h2 class="section-title">Bestseller & Terbitan Terbaru</h2>
+          <p class="section-desc">Koleksi terpopuler pilihan pembaca dan karya sastra terbaru dari penulis berbakat kami.</p>
+        </div>
+        
+        <!-- Books grid filled by JS -->
+        <div class="books-grid" id="home-featured-grid"></div>
+
+        <div class="text-center">
+          <a href="#katalog" class="btn btn-outline-dark spa-route">Lihat Semua Katalog Buku <i class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Keunggulan B2B & Mitra Overview -->
+    <section class="b2b-overview">
+      <div class="container b2b-overview-grid">
+        <div>
+          <span class="section-tag">Kemitraan Strategis</span>
+          <h2 style="font-size: 2.2rem; margin-bottom: 20px;">Layanan Grosir B2B & Pengadaan Instansi</h2>
+          <p style="color: var(--text-muted); margin-bottom: 30px;">Sebagai penerbit tangan pertama dengan fasilitas percetakan mandiri, kami siap melayani kebutuhan pengadaan buku skala besar untuk perpustakaan sekolah, universitas, instansi pemerintah, reseller, dan distributor buku nasional dengan margin keuntungan yang sangat kompetitif.</p>
+          <a href="#mitra" class="btn btn-primary spa-route"><i class="fas fa-handshake"></i> Pelajari Program Kemitraan</a>
+        </div>
+        <div class="b2b-overview-features">
+          <div class="b2b-feature-box">
+            <i class="fas fa-percentage"></i>
+            <h4>Diskon Grosir Hingga 45%</h4>
+            <p>Skema diskon berjenjang yang menguntungkan bagi toko buku dan distributor lokal.</p>
+            <a href="#mitra" class="spa-route class b2b-feature-link">Info Grosir <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="b2b-feature-box">
+            <i class="fas fa-university"></i>
+            <h4>Pengadaan Perpustakaan</h4>
+            <p>Dukungan kelengkapan dokumen legalitas (SIUP, NIB, NPWP) untuk tender pengadaan buku.</p>
+            <a href="#mitra" class="spa-route b2b-feature-link">Info Pengadaan <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="b2b-feature-box">
+            <i class="fas fa-pen-fancy"></i>
+            <h4>Kirim Naskah Mandiri</h4>
+            <p>Layanan penerbitan naskah berkualitas bagi para akademisi dan novelis berbakat.</p>
+            <a href="#layanan-penulis" class="spa-route b2b-feature-link">Kirim Naskah <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="b2b-feature-box">
+            <i class="fas fa-magic"></i>
+            <h4>Penerbitan Hybrid</h4>
+            <p>Paket penerbitan mandiri lengkap dengan editing, sampul, cetak, dan e-book.</p>
+            <a href="#layanan-penulis" class="spa-route b2b-feature-link">Info Layanan <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Blog Feed Previews -->
+    <section class="home-blog-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Literasi & Kabar</span>
+          <h2 class="section-title">Kabar Penerbit & Tips Literasi</h2>
+          <p class="section-desc">Ikuti artikel menarik seputar proses penulisan kreatif, berita peluncuran buku baru, dan edukasi hak cipta.</p>
+        </div>
+        
+        <div class="blog-grid" id="home-blog-grid"></div>
+        
+        <div class="text-center" style="margin-top: 40px;">
+          <a href="#blog" class="btn btn-outline-dark spa-route">Kunjungi Blog Literasi <i class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       PAGE CONTENT - KATALOG BUKU
+       ======================================================================== -->
+  <main class="page-section" id="katalog">
+    <div class="b2b-header text-center">
+      <div class="container">
+        <h1>Katalog Lengkap Penerbit Darussholah</h1>
+        <p>Gunakan filter di bawah untuk memilah berdasarkan genre, format buku, atau status ketersediaan.</p>
+      </div>
+    </div>
+
+    <section class="container catalog-page-layout">
+      <!-- Search & Filters Container -->
+      <div class="catalog-search-filter-bar">
+        <div class="catalog-filters">
+          <!-- Kategori -->
+          <div class="filter-group">
+            <label for="filter-genre">Kategori Kitab</label>
+            <select id="filter-genre" class="filter-select">
+              <option value="all">Semua Kategori</option>
+              <option value="fiqih">Fiqih & Syariah</option>
+              <option value="tatabahasa">Nahwu, Sharaf & Alat</option>
+              <option value="akhlak">Akhlak & Tasawuf</option>
+              <option value="aqidah">Aqidah & Tauhid</option>
+              <option value="sastra">Sastra & Balaghoh</option>
+            </select>
+          </div>
+          <!-- Format -->
+          <div class="filter-group">
+            <label for="filter-format">Format</label>
+            <select id="filter-format" class="filter-select">
+              <option value="all">Semua Format</option>
+              <option value="print">Buku Cetak</option>
+              <option value="ebook">E-Book</option>
+            </select>
+          </div>
+          <!-- Status -->
+          <div class="filter-group">
+            <label for="filter-status">Status</label>
+            <select id="filter-status" class="filter-select">
+              <option value="all">Semua Status</option>
+              <option value="bestseller">Bestseller</option>
+              <option value="new">Rilis Baru</option>
+            </select>
+          </div>
+          <!-- Inline Search -->
+          <div class="catalog-search-inline">
+            <i class="fas fa-search"></i>
+            <input type="text" id="filter-search-inline" placeholder="Ketik kata kunci (Judul, Penulis, ISBN)...">
+          </div>
+        </div>
+        
+        <!-- Results stats -->
+        <div class="catalog-results-info">
+          <span id="results-count">Menampilkan 0 Buku</span>
+          <div class="active-filters-list" id="active-filters-list"></div>
+        </div>
+      </div>
+
+      <!-- Book Grid Filled dynamically by JS -->
+      <div class="books-grid" id="catalog-books-grid"></div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       PAGE CONTENT - MITRA & DISTRIBUTOR (B2B FOCUS)
+       ======================================================================== -->
+  <main class="page-section" id="mitra">
+    <div class="b2b-header text-center">
+      <div class="container">
+        <h1>Mitra Distributor, Toko Buku & Pengadaan</h1>
+        <p>Bekerja sama langsung dengan produsen utama menjamin margin usaha maksimal dan ketersediaan stok yang pasti.</p>
+      </div>
+    </div>
+
+    <section class="container">
+      <div class="b2b-grid">
+        <!-- Benefit Details list -->
+        <div class="b2b-benefits">
+          <h2>Keuntungan Bermitra Tangan Pertama</h2>
+          <p style="color: var(--text-muted); margin-bottom: 30px;">Kami memangkas jalur distribusi tradisional agar reseller dan distributor kami menerima keuntungan finansial terbaik. Dukungan pemasaran penuh serta kebebasan penukaran buku retur menjamin bisnis retail Anda berjalan lancar.</p>
+          
+          <div class="b2b-benefit-list">
+            <div class="b2b-benefit-item">
+              <div class="b2b-benefit-num">1</div>
+              <div class="b2b-benefit-info">
+                <h3>Margin Sangat Kompetitif</h3>
+                <p>Mulai dari diskon reseller terkecil 25% hingga distributor utama 45% dari harga jual eceran nasional.</p>
+              </div>
+            </div>
+            <div class="b2b-benefit-item">
+              <div class="b2b-benefit-num">2</div>
+              <div class="b2b-benefit-info">
+                <h3>Kebijakan Retur Fleksibel</h3>
+                <p>Khawatir stok buku tidak laku? Kami menyediakan opsi tukar judul (retur) hingga 20% dari total pesanan Anda.</p>
+              </div>
+            </div>
+            <div class="b2b-benefit-item">
+              <div class="b2b-benefit-num">3</div>
+              <div class="b2b-benefit-info">
+                <h3>Pengadaan Resmi Instansi</h3>
+                <p>Kami memiliki legalitas CV/PT, NPWP, E-katalog, dan faktur pajak lengkap untuk memfasilitasi kebutuhan tender perpustakaan daerah dan dinas pendidikan.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Margin table breakdown -->
+          <div class="margin-table-box">
+            <h3>Rincian Margin Kemitraan (Berjenjang)</h3>
+            <table class="margin-table">
+              <thead>
+                <tr>
+                  <th>Tipe Kemitraan</th>
+                  <th>Minimal Pembelian</th>
+                  <th>Dukungan Promosi</th>
+                  <th>Diskon/Margin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Reseller Satuan</td>
+                  <td>3 Eks / Order</td>
+                  <td>Foto Produk & Copywriting</td>
+                  <td class="margin-highlight">Diskon 25%</td>
+                </tr>
+                <tr>
+                  <td>Toko Buku / Agen</td>
+                  <td>Rp 2.000.000</td>
+                  <td>Spanduk, Rak Buku, Brosur</td>
+                  <td class="margin-highlight">Diskon 35%</td>
+                </tr>
+                <tr>
+                  <td>Wholesaler / Distributor</td>
+                  <td>Rp 10.000.000</td>
+                  <td>Prioritas Cetak & Eksklusivitas Wilayah</td>
+                  <td class="margin-highlight">Diskon 40% - 45%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Partnership application form box -->
+        <div class="form-box">
+          <h2>Ajukan Kerja Sama B2B</h2>
+          <p class="form-box-subtitle">Silakan isi formulir di bawah ini. Tim B2B kami akan membalas Anda dengan dokumen katalog harga grosir terlengkap.</p>
+          
+          <form id="b2b-partner-form" action="#">
+            <div class="form-group">
+              <label for="b2b-name">Nama Lengkap PIC</label>
+              <input type="text" id="b2b-name" class="form-control" placeholder="Contoh: Budi Santoso" required>
+            </div>
+            <div class="form-group">
+              <label for="b2b-company">Nama Perusahaan / Toko / Instansi</label>
+              <input type="text" id="b2b-company" class="form-control" placeholder="Contoh: Toko Buku Widya Utama" required>
+            </div>
+            <div class="form-group">
+              <label for="b2b-email">Alamat Email Bisnis</label>
+              <input type="email" id="b2b-email" class="form-control" placeholder="name@company.com" required>
+            </div>
+            <div class="form-group">
+              <label for="b2b-phone">Nomor WhatsApp Aktif</label>
+              <input type="tel" id="b2b-phone" class="form-control" placeholder="0812xxxxxxxx" required>
+            </div>
+            <div class="form-group">
+              <label for="b2b-type">Tipe Kemitraan</label>
+              <select id="b2b-type" class="form-control" required>
+                <option value="">-- Pilih Tipe Kemitraan --</option>
+                <option value="reseller">Reseller Buku Online/Offline</option>
+                <option value="tokobuku">Keagenan Toko Buku Fisik</option>
+                <option value="distributor">Distributor Wilayah (Grosir)</option>
+                <option value="pengadaan">Pengadaan Instansi / Perpustakaan</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="b2b-message">Pesan Tambahan & Rencana Volume Pembelian</label>
+              <textarea id="b2b-message" class="form-control" placeholder="Tuliskan detail wilayah operasional atau rencana jumlah pengadaan instansi Anda..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-file-pdf"></i> Dapatkan Pricelist Grosir (PDF)</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       PAGE CONTENT - LAYANAN PENULIS (AUTHOR SERVICES)
+       ======================================================================== -->
+  <main class="page-section" id="layanan-penulis">
+    <div class="author-header text-center">
+      <div class="container">
+        <h1>Kirim Naskah Anda ke Meja Redaksi Kami</h1>
+        <p>Kami menyambut karya segar berbobot dalam bentuk fiksi novel, materi pendidikan sekolah dasar, hingga kajian sains populer.</p>
+      </div>
+    </div>
+
+    <section class="container">
+      <div class="author-services-grid">
+        <!-- Guidelines and models info -->
+        <div class="publishing-info">
+          <h2>Model Penerbitan Darussholah</h2>
+          <p style="color: var(--text-muted); margin-bottom: 30px;">Kami percaya setiap tulisan yang baik berhak dibaca dunia. Kami menyediakan dua model penerbitan utama yang transparan bagi penulis pemula maupun profesional.</p>
+          
+          <div class="publishing-models">
+            <!-- Model 1 -->
+            <div class="model-card">
+              <div class="model-card-header">
+                <h3 style="font-size: 1.1rem; font-weight: 700;">1. Jalur Penerbitan Mayor (Traditional)</h3>
+                <span class="model-badge major">Bebas Biaya</span>
+              </div>
+              <p>Redaksi kami menyeleksi naskah dengan ketat. Jika naskah Anda terpilih, seluruh biaya penyuntingan, desain sampul, pengurusan ISBN, pencetakan, dan distribusi nasional di toko buku offline ditanggung penuh oleh penerbit. Penulis menerima sistem royalti 10% dari harga jual bersih.</p>
+            </div>
+            
+            <!-- Model 2 -->
+            <div class="model-card">
+              <div class="model-card-header">
+                <h3 style="font-size: 1.1rem; font-weight: 700;">2. Jalur Penerbitan Hybrid / Self-Publishing</h3>
+                <span class="model-badge hybrid">Rekomendasi Cepat</span>
+              </div>
+              <p>Naskah Anda tidak lolos seleksi mayor tetapi tetap ingin diterbitkan? Melalui jalur hybrid, kami menyediakan tim editorial profesional (editor, layouter, ilustrator cover) dengan sistem patungan biaya. Penulis berhak memperoleh margin royalti yang jauh lebih besar hingga 60% dan buku tetap didistribusikan di toko online resmi kami.</p>
+            </div>
+          </div>
+
+          <!-- Manuscript submission guide -->
+          <div class="guidelines-box">
+            <h3>Persyaratan Pengiriman Naskah</h3>
+            <div class="guidelines-steps">
+              <div class="step-item">
+                <div class="step-num">1</div>
+                <div class="step-text">
+                  <h4>Format Naskah Lengkap</h4>
+                  <p>Ketikan rapi di MS Word, font Times New Roman 12pt, spasi 1.5, ukuran kertas A4. Panjang naskah minimal 100 halaman (untuk novel/non-fiksi).</p>
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-num">2</div>
+                <div class="step-text">
+                  <h4>Sinopsis Lengkap & Bab Pertama</h4>
+                  <p>Wajib melampirkan file sinopsis singkat (1-2 halaman) yang memuat ringkasan seluruh alur cerita dari awal sampai akhir.</p>
+                </div>
+              </div>
+              <div class="step-item">
+                <div class="step-num">3</div>
+                <div class="step-text">
+                  <h4>Pernyataan Keaslian Karya</h4>
+                  <p>Buku harus merupakan karya orisinal, bukan hasil plagiarisme/AI, dan belum pernah diterbitkan di penerbit lain sebelumnya.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manuscript upload form box -->
+        <div class="form-box">
+          <h2>Kirim Sinopsis & Naskah</h2>
+          <p class="form-box-subtitle">Silakan isi formulir biodata dan lampirkan naskah Anda. Tim redaksi kami akan memproses peninjauan naskah Anda.</p>
+          
+          <form id="manuscript-submission-form" action="#">
+            <div class="form-group">
+              <label for="author-name">Nama Lengkap Penulis</label>
+              <input type="text" id="author-name" class="form-control" placeholder="Contoh: Dewi Lestari" required>
+            </div>
+            <div class="form-group">
+              <label for="author-email">Email Aktif</label>
+              <input type="email" id="author-email" class="form-control" placeholder="dewi@gmail.com" required>
+            </div>
+            <div class="form-group">
+              <label for="author-phone">Nomor Handphone (WhatsApp)</label>
+              <input type="tel" id="author-phone" class="form-control" placeholder="0813xxxxxxxx" required>
+            </div>
+            <div class="form-group">
+              <label for="ms-title">Judul Naskah Buku</label>
+              <input type="text" id="ms-title" class="form-control" placeholder="Contoh: Senandung Di Ujung Lembah" required>
+            </div>
+            <div class="form-group">
+              <label for="ms-genre">Kategori Naskah</label>
+              <select id="ms-genre" class="form-control" required>
+                <option value="">-- Pilih Kategori Naskah --</option>
+                <option value="fiqih">Fiqih & Syariah</option>
+                <option value="tatabahasa">Nahwu, Sharaf & Alat</option>
+                <option value="akhlak">Akhlak & Tasawuf</option>
+                <option value="aqidah">Aqidah & Tauhid</option>
+                <option value="sastra">Sastra & Balaghoh</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="ms-model">Pilihan Model Penerbitan</label>
+              <select id="ms-model" class="form-control" required>
+                <option value="">-- Pilih Jalur Penerbitan --</option>
+                <option value="mayor">Jalur Mayor (Seleksi Ketat)</option>
+                <option value="hybrid">Jalur Hybrid (Cepat & Royalti Besar)</option>
+              </select>
+            </div>
+            
+            <!-- File upload simulator -->
+            <div class="form-group">
+              <label>Unggah Sinopsis & Naskah (Format ZIP/PDF/DOCX, Maks 15MB)</label>
+              <div class="file-upload-wrap">
+                <input type="file" id="manuscript-file" accept=".zip,.pdf,.docx,.doc" required>
+                <div id="file-upload-label">
+                  <i class="fas fa-cloud-upload-alt file-upload-icon"></i>
+                  <div class="file-upload-text">Tarik & lepas file di sini, atau <span>Pilih File</span></div>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Kirim Naskah Ke Meja Redaksi</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       PAGE CONTENT - TENTANG KAMI
+       ======================================================================== -->
+  <main class="page-section" id="tentang-kami">
+    <div class="b2b-header text-center">
+      <div class="container">
+        <h1>Membangun Peradaban Lewat Literasi Terpercaya</h1>
+        <p>Sejarah singkat, visi, misi, dan nilai-nilai korporasi Penerbit Darussholah.</p>
+      </div>
+    </div>
+
+    <section class="container about-history">
+      <div class="about-grid">
+        <div class="about-img-box">
+          <!-- Graphic representation of printing house/books library -->
+          <div style="background-color: var(--primary-light); aspect-ratio: 1.4 / 1; border-radius: var(--radius-lg); overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative;">
+            <div style="text-align: center; color: white; padding: 40px;">
+              <i class="fas fa-print" style="font-size: 4rem; color: var(--accent); margin-bottom: 20px;"></i>
+              <h3 style="color: white; font-size: 1.5rem; margin-bottom: 10px;">Fasilitas Mesin Cetak Mandiri</h3>
+              <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.5;">Kami berinvestasi pada mesin cetak offset & POD modern untuk menjamin efisiensi biaya dan ketepatan warna.</p>
+            </div>
+            <div style="position: absolute; bottom: 10px; right: 10px; font-size: 0.65rem; color: rgba(255, 255, 255, 0.4); text-transform: uppercase; font-weight: bold;">Foto Produksi Mandiri</div>
+          </div>
+        </div>
+        
+        <div>
+          <span class="section-tag">Kisah Kami</span>
+          <h2 style="font-size: 2.2rem; margin-bottom: 24px;">Penerbit Tangan Pertama Dari Darussholah Untuk Dunia</h2>
+          <p style="color: var(--text-muted); margin-bottom: 16px; line-height: 1.7;">Didirikan pada tahun 2018, Penerbit Darussholah bermula dari sebuah bengkel cetak kecil dengan visi mendemokratisasi akses buku bacaan berkualitas di Indonesia. Kami menyadari bahwa tingginya harga buku sering disebabkan oleh rantai distribusi eceran pihak ketiga yang terlampau panjang.</p>
+          <p style="color: var(--text-muted); margin-bottom: 24px; line-height: 1.7;">Dengan mengintegrasikan lini produksi pencetakan dan jalur distribusi e-commerce secara mandiri, kami meluncurkan model bisnis direct-to-consumer (D2C). Penulis kami dihargai lebih tinggi, pembaca kami membayar lebih sedikit, dan integritas naskah berlisensi asli selalu terjaga dari bahaya pembajakan.</p>
+          
+          <!-- Corporate stats -->
+          <div class="about-stats">
+            <div class="stat-box text-center">
+              <div class="stat-num">2018</div>
+              <div class="stat-label">Tahun Berdiri</div>
+            </div>
+            <div class="stat-box text-center">
+              <div class="stat-num">500+</div>
+              <div class="stat-label">Judul Buku</div>
+            </div>
+            <div class="stat-box text-center">
+              <div class="stat-num">150+</div>
+              <div class="stat-label">Penulis Aktif</div>
+            </div>
+            <div class="stat-box text-center">
+              <div class="stat-num">1Jt+</div>
+              <div class="stat-label">Eks Terjual</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       PAGE CONTENT - BLOG / BERITA (LITERASI NEWS FEED)
+       ======================================================================== -->
+  <main class="page-section" id="blog-page">
+    <div class="b2b-header text-center">
+      <div class="container">
+        <h1>Kabar Literasi & Edukasi Penulis</h1>
+        <p>Temukan tips eksklusif menulis novel, berita industri buku, dan pengumuman lomba menulis naskah.</p>
+      </div>
+    </div>
+
+    <section class="container blog-page">
+      <!-- Category Selection Tabs -->
+      <div class="blog-nav-bar">
+        <div class="blog-categories">
+          <button class="category-tab active" data-category="all">Semua Artikel</button>
+          <button class="category-tab" data-category="tips">Tips Menulis & Editing</button>
+          <button class="category-tab" data-category="berita">Berita Penerbit & Event</button>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500;">
+          Dikelola oleh Tim Editor Penerbit Darussholah
+        </div>
+      </div>
+
+      <!-- Articles list grid filled dynamically by JS -->
+      <div class="blog-grid" id="blog-list-grid"></div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       PAGE CONTENT - KONTAK
+       ======================================================================== -->
+  <main class="page-section" id="kontak">
+    <div class="b2b-header text-center">
+      <div class="container">
+        <h1>Hubungi Layanan Pelanggan Kami</h1>
+        <p>Layanan penjualan retail B2C, urusan naskah penulis, hingga pengadaan grosir instansi B2B.</p>
+      </div>
+    </div>
+
+    <section class="container contact-page">
+      <div class="contact-grid">
+        <!-- Contact details and map mockup -->
+        <div>
+          <h2>Informasi Kontak Resmi</h2>
+          <p style="color: var(--text-muted); margin-bottom: 40px;">Kami melayani kunjungan mitra bisnis B2B dan penulis secara tatap muka dengan janji temu terlebih dahulu di kantor redaksi dan fasilitas percetakan kami.</p>
+          
+          <div class="contact-info-list">
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="contact-item-text">
+                <h3>Alamat Kantor Redaksi & Gudang Utama</h3>
+                <p>Jl. Darussholah No. 42B, Sektor Percetakan, Pemalang, Jawa Tengah, Indonesia</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="fas fa-phone-alt"></i></div>
+              <div class="contact-item-text">
+                <h3>Nomor Telepon & WhatsApp Layanan</h3>
+                <p>Hotline Sales: +62 812-3456-7890 (WhatsApp)<br>Redaksi Naskah: +62 856-7890-1234 (Telepon)</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+              <div class="contact-item-text">
+                <h3>Korespondensi Email Resmi</h3>
+                <p>General Inquiries: info@darussholah.com<br>Naskah Penulis: redaksi@darussholah.com</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Mockup -->
+          <div class="map-mockup" style="margin-top: 30px;">
+            <div class="map-placeholder">
+              <i class="fas fa-map-marked-alt"></i>
+              <h3>Simulasi Lokasi Google Maps</h3>
+              <p>Jl. Darussholah No. 42B, Pemalang, Jawa Tengah</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- General contact messaging form -->
+        <div class="form-box">
+          <h2>Kirim Pesan Langsung</h2>
+          <p class="form-box-subtitle">Gunakan formulir di bawah ini untuk mengirimkan pertanyaan umum atau pengaduan kualitas cetakan buku yang Anda terima.</p>
+          
+          <form id="general-contact-form" action="#">
+            <div class="form-group">
+              <label for="contact-name">Nama Lengkap</label>
+              <input type="text" id="contact-name" class="form-control" placeholder="Contoh: Rian Wijaya" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Alamat Email</label>
+              <input type="email" id="contact-email" class="form-control" placeholder="rian@gmail.com" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-phone">Nomor Telepon/WA</label>
+              <input type="tel" id="contact-phone" class="form-control" placeholder="0899xxxxxxxx" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-subject">Subjek Pesan</label>
+              <select id="contact-subject" class="form-control" required>
+                <option value="">-- Pilih Subjek Pesan --</option>
+                <option value="retail">Pertanyaan Pembelian Retail (B2C)</option>
+                <option value="naskah">Pertanyaan Status Penilaian Naskah</option>
+                <option value="komplain">Komplain Kualitas Buku / Retur</option>
+                <option value="lainnya">Kerja Sama & Kemitraan Lainnya</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contact-message">Isi Pesan / Pertanyaan Lengkap</label>
+              <textarea id="contact-message" class="form-control" placeholder="Tuliskan isi pesan Anda secara mendetail..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Kirim Pesan Sekarang</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       PAGE CONTENT - ADMIN CMS DASHBOARD
+       ======================================================================== -->
+  <main class="page-section" id="admin">
+    <!-- 1. Admin Authentication Gate (Login Screen) -->
+    <div id="admin-login-view" class="admin-login-wrapper">
+      <div class="admin-login-card">
+        <div class="admin-login-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="admin-badge" style="margin-bottom: 12px;"><i class="fas fa-lock"></i> Akses Terbatas Staf</div>
+        <h2 class="admin-login-title">Portal Staf Darussholah</h2>
+        <p class="admin-login-desc">Masukkan kata sandi administrator untuk membuka pengelolaan katalog, harga promo, dan cover buku.</p>
+
+        <form id="admin-login-form" onsubmit="handleAdminLogin(event)">
+          <div class="admin-login-input-group">
+            <i class="fas fa-key admin-login-key-icon"></i>
+            <input type="password" id="admin-password-input" class="admin-login-input" placeholder="Masukkan kata sandi..." autocomplete="current-password" required>
+            <button type="button" class="btn-toggle-pwd" onclick="toggleAdminPasswordVisibility()" title="Lihat/Sembunyikan sandi">
+              <i class="fas fa-eye" id="admin-pwd-eye"></i>
+            </button>
+          </div>
+
+          <div id="admin-login-error" class="admin-login-error" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i> <span>Kata sandi salah. Silakan periksa kembali.</span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-admin-login">
+            <i class="fas fa-sign-in-alt"></i> Masuk ke Backoffice
+          </button>
+        </form>
+
+        <div class="admin-login-footer">
+          <a href="#home" class="spa-route text-muted"><i class="fas fa-arrow-left"></i> Kembali ke Beranda Pengunjung</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Admin CMS Dashboard (Dedicated Backoffice View) -->
+    <div id="admin-dashboard-view" style="display: none;">
+      <!-- Dedicated Backoffice Header -->
+      <header class="admin-topbar">
+        <div class="container admin-topbar-container">
+          <div class="admin-topbar-brand">
+            <div class="admin-logo-icon">D</div>
+            <div class="admin-logo-text">
+              DARUSSHOLAH <span>BACKOFFICE CMS</span>
+            </div>
+            <span class="admin-badge-pill pill-online"><i class="fas fa-circle"></i> API Online (Port 8000)</span>
+            <span class="admin-badge-pill pill-db"><i class="fas fa-database"></i> books.json</span>
+          </div>
+
+          <div class="admin-topbar-actions">
+            <a href="#home" class="btn btn-outline-light btn-sm spa-route" title="Buka Toko Pengunjung"><i class="fas fa-store"></i> <span>Kunjungi Toko Publik</span></a>
+            <span class="admin-user-badge"><i class="fas fa-user-shield"></i> Staf Admin</span>
+            <button class="btn btn-outline-danger btn-sm" onclick="handleAdminLogout()" title="Kunci dan keluar"><i class="fas fa-sign-out-alt"></i> Keluar</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="admin-wrapper">
+        <div class="container">
+          <!-- Admin Header -->
+          <div class="admin-header-row">
+            <div>
+              <div class="admin-badge"><i class="fas fa-shield-alt"></i> Backoffice Darussholah Terverifikasi</div>
+              <h1 class="admin-title">Portal Manajemen Katalog Buku</h1>
+              <p class="admin-subtitle">Kelola database buku, perbarui harga promo, atur tautan marketplace Shopee, dan unggah cover buku tanpa coding.</p>
+            </div>
+            <div class="admin-header-actions">
+              <button class="btn btn-outline-dark btn-sm" id="admin-refresh-btn"><i class="fas fa-sync-alt"></i> Muat Ulang Data</button>
+              <button class="btn btn-primary btn-sm" id="admin-btn-open-add" onclick="openAddBookModal()"><i class="fas fa-plus-circle"></i> + Tambah Buku Baru</button>
+            </div>
+          </div>
+
+        <!-- Admin Quick Stats -->
+        <div class="admin-stats-grid">
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap" style="background: rgba(15, 76, 129, 0.1); color: var(--primary);">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Judul Buku</span>
+              <h3 class="stat-number" id="stat-total-books">0</h3>
+            </div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap" style="background: rgba(224, 169, 109, 0.15); color: #c28847;">
+              <i class="fas fa-tags"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Kategori / Genre</span>
+              <h3 class="stat-number" id="stat-total-genres">0</h3>
+            </div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap" style="background: rgba(238, 77, 45, 0.12); color: #ee4d2d;">
+              <i class="fas fa-shopping-basket"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Produk Shopee Resmi</span>
+              <h3 class="stat-number" id="stat-shopee-books">0</h3>
+            </div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="stat-icon-wrap" style="background: rgba(34, 197, 94, 0.12); color: #16a34a;">
+              <i class="fas fa-server"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Status Server API</span>
+              <h3 class="stat-number" id="stat-server-status" style="font-size: 1.15rem; color: #16a34a;"><i class="fas fa-check-circle"></i> Terhubung</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Table Toolbar & Search -->
+        <div class="admin-panel-card">
+          <div class="admin-toolbar">
+            <div class="admin-search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" id="admin-search-input" placeholder="Cari judul buku, penulis, atau ISBN...">
+            </div>
+            <div class="admin-filter-box">
+              <select id="admin-filter-genre" class="admin-select">
+                <option value="all">Semua Kategori</option>
+                <option value="fiqih">Fiqih</option>
+                <option value="tatabahasa">Tatabahasa (Nahwu/Sharaf)</option>
+                <option value="akhlak">Akhlak & Tasawuf</option>
+                <option value="aqidah">Aqidah</option>
+                <option value="umum">Umum</option>
+              </select>
+            </div>
+            <div class="admin-count-info">
+              Menampilkan <strong id="admin-count-badge">0</strong> dari total buku
+            </div>
+          </div>
+
+          <!-- Responsive Table Container -->
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width: 70px;">Cover</th>
+                  <th>Judul & Penulis</th>
+                  <th>Kategori / Format</th>
+                  <th>Harga & Diskon</th>
+                  <th>Dimensi & Berat</th>
+                  <th>Marketplace</th>
+                  <th style="width: 140px; text-align: center;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="admin-books-tbody">
+                <!-- Filled dynamically via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Minimalist Backoffice Footer -->
+    <footer class="admin-minimal-footer">
+      <div class="container admin-min-footer-content">
+        <div>
+          &copy; 2026 <strong>Darussholah Book Management System</strong> • Sesi Administrator Terverifikasi
+        </div>
+        <div>
+          <span class="text-muted"><i class="fas fa-shield-alt"></i> Area Khusus Staf Internal</span>
+        </div>
+      </div>
+    </footer>
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       FOOTER & TRUST BADGES
+       ======================================================================== -->
+  <footer class="main-footer">
+    <div class="container footer-grid">
+      <!-- About Publisher column -->
+      <div class="footer-col footer-about">
+        <!-- Logo copy -->
+        <a href="#home" class="logo spa-route">
+          <div class="logo-icon">D</div>
+          <div class="logo-text">
+            DARUSSHOLAH
+            <span>PUBLISHER & RETAILER</span>
+          </div>
+        </a>
+        <p class="footer-about-desc">Penerbit tangan pertama yang memproduksi, memasarkan, dan mengirimkan buku bermutu tinggi secara langsung demi mewujudkan ekosistem literasi yang adil, orisinal, dan terjangkau.</p>
+        
+        <!-- Trust Badges & Marketplaces -->
+        <div class="footer-badges">
+          <div class="footer-badge-item">
+            <i class="fas fa-shield-halved"></i>
+            <span>Orisinalitas<br>Terjamin 100%</span>
+          </div>
+          <div class="footer-badge-item">
+            <i class="fas fa-print"></i>
+            <span>Print On<br>Demand Tech</span>
+          </div>
+        </div>
+        <div style="margin-top: 15px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <a href="https://tokopedia.com" target="_blank" style="font-size: 0.72rem; background-color: rgba(66, 181, 73, 0.15); color: #42b549; padding: 6px 12px; border-radius: var(--radius-sm); font-weight: 600; display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(66, 181, 73, 0.3);"><i class="fas fa-store"></i> Tokopedia</a>
+          <a href="https://shopee.co.id" target="_blank" style="font-size: 0.72rem; background-color: rgba(238, 77, 45, 0.15); color: #ee4d2d; padding: 6px 12px; border-radius: var(--radius-sm); font-weight: 600; display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(238, 77, 45, 0.3);"><i class="fas fa-shopping-basket"></i> Shopee</a>
+        </div>
+      </div>
+
+      <!-- Quick Nav Links -->
+      <div class="footer-col">
+        <h3>Navigasi Cepat</h3>
+        <ul class="footer-links">
+          <li><a href="#home" class="spa-route">Halaman Utama</a></li>
+          <li><a href="#katalog" class="spa-route">Katalog Lengkap</a></li>
+          <li><a href="#mitra" class="spa-route">Reseller & Grosir B2B</a></li>
+          <li><a href="#layanan-penulis" class="spa-route">Kirim Naskah Buku</a></li>
+          <li><a href="#tentang-kami" class="spa-route">Tentang Penerbit</a></li>
+          <li><a href="#blog" class="spa-route">Artikel & Berita</a></li>
+        </ul>
+      </div>
+
+      <!-- Support & Help -->
+      <div class="footer-col">
+        <h3>Bantuan & Layanan</h3>
+        <ul class="footer-links">
+          <li><a href="#kontak" class="spa-route">Hubungi Customer Service</a></li>
+          <li><a href="#katalog" class="spa-route">Cara Pemesanan Buku</a></li>
+          <li><a href="#mitra" class="spa-route">Skema Royalti Penulis</a></li>
+          <li><a href="#kontak" class="spa-route">Kebijakan Pengembalian Buku</a></li>
+          <li><a href="#" onclick="alert('Demo: Kebijakan Privasi hanya untuk tujuan ilustrasi.')">Kebijakan Privasi</a></li>
+          <li><a href="#" onclick="alert('Demo: Syarat & Ketentuan hanya untuk tujuan ilustrasi.')">Syarat & Ketentuan</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact details -->
+      <div class="footer-col">
+        <h3>Hubungi Gudang Kami</h3>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Jl. Darussholah No. 42B, Pemalang, Jawa Tengah, Indonesia</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+62 812-3456-7890 (WA Sales)</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>info@darussholah.com</span>
+        </div>
+        
+        <!-- Social Medias -->
+        <div class="footer-socials">
+          <a href="#" class="social-icon flex-center" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-icon flex-center" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon flex-center" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon flex-center" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="social-icon flex-center" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright Bar -->
+    <div class="container footer-bottom">
+      <div>
+        &copy; 2026 Darussholah. Hak Cipta Dilindungi Undang-Undang.
+      </div>
+      <div class="footer-bottom-links">
+        <a href="#admin" class="spa-route footer-admin-link" title="Akses Administrator Staf Darussholah"><i class="fas fa-lock" style="font-size: 0.7rem;"></i> Akses Staf</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       GLOBAL SLIDE-OVER WIDGET: SHOPPING CART DRAWER
+       ======================================================================== -->
+  <div class="cart-overlay" id="cart-overlay">
+    <div class="cart-drawer" id="cart-drawer">
+      <div class="cart-header">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--primary);"><i class="fas fa-shopping-bag text-accent"></i> Keranjang Belanja Anda</h3>
+        <button class="cart-close" id="cart-close-btn"><i class="fas fa-times"></i></button>
+      </div>
+      
+      <!-- Cart Items List (JS Filled) -->
+      <div class="cart-items-list" id="cart-items-container"></div>
+      
+      <!-- Checkout footer -->
+      <div class="cart-footer">
+        <div class="cart-summary-row">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">Rp 0</span>
+        </div>
+        <div class="cart-summary-row">
+          <span>Estimasi Pajak & Gudang</span>
+          <span>Bebas Biaya (Promo)</span>
+        </div>
+        <div class="cart-summary-row total">
+          <span>Total Pembelian</span>
+          <span id="cart-total">Rp 0</span>
+        </div>
+        
+        <button class="btn btn-wa btn-block" id="cart-checkout-btn" disabled>
+          <i class="fab fa-whatsapp"></i> Beli via WhatsApp Sales
+        </button>
+        <p style="font-size: 0.72rem; color: var(--text-muted); text-align: center; margin-top: 10px;">
+          Pesanan retail Anda akan langsung diarahkan ke Sales WhatsApp kami untuk rincian ongkos kirim.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       GLOBAL MODAL DIALOG: BOOK DETAIL DIALOG
+       ======================================================================== -->
+  <div class="modal-overlay" id="book-detail-modal">
+    <div class="modal-content" style="max-width: 850px;">
+      <button class="modal-close"><i class="fas fa-times"></i></button>
+      
+      <div class="book-detail-grid">
+        <!-- 3D image and Actions -->
+        <div class="book-detail-left">
+          <div class="detail-img-wrap" id="detail-img-container"></div>
+          <div class="book-detail-actions">
+            <button class="btn btn-primary" id="detail-add-cart-btn"><i class="fas fa-cart-plus"></i> Tambahkan Ke Keranjang</button>
+            <button class="btn btn-wa" id="detail-buy-wa-btn"><i class="fab fa-whatsapp"></i> Beli via WhatsApp Sales</button>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <a href="#" class="btn btn-tokopedia" id="detail-tokopedia-btn" target="_blank"><i class="fas fa-store"></i> Tokopedia</a>
+              <a href="#" class="btn btn-shopee" id="detail-shopee-btn" target="_blank"><i class="fas fa-shopping-basket"></i> Shopee</a>
+            </div>
+            
+            <button class="btn btn-sample" id="detail-sneak-peek-btn"><i class="fas fa-book-open"></i> Intip Isi Buku (Sample)</button>
+          </div>
+        </div>
+        
+        <!-- Text specs and info -->
+        <div class="book-detail-right">
+          <span class="section-tag" style="font-size: 0.75rem;">Info Detil Buku</span>
+          <h2 id="detail-title" style="margin-top: 4px;">Judul Buku Terpilih</h2>
+          <p class="book-detail-author" id="detail-author">Karya Penulis Utama</p>
+          
+          <div class="book-detail-price">
+            <span class="current" id="detail-current-price">Rp 0</span>
+            <span class="original" id="detail-original-price" style="display: none;">Rp 0</span>
+            <span class="discount" id="detail-discount-badge" style="display: none;">-0%</span>
+          </div>
+          
+          <!-- Inner Tabs inside Modal -->
+          <div class="book-detail-tabs">
+            <button class="detail-tab active" data-tab="synopsis">Sinopsis Buku</button>
+            <button class="detail-tab" data-tab="specs">Spesifikasi Detail</button>
+          </div>
+          
+          <!-- Synopsis contents -->
+          <div class="detail-tab-content" id="detail-tab-synopsis">
+            <p id="detail-synopsis-text" style="color: var(--text-main); font-size: 0.88rem; line-height: 1.7; text-align: justify;"></p>
+            
+            <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px; background-color: var(--secondary-light); color: var(--secondary); padding: 12px; border-radius: var(--radius-md); font-size: 0.8rem; font-weight: 500;">
+              <i class="fas fa-shield-alt" style="font-size: 1.1rem;"></i>
+              <span id="detail-warranty-text">Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.</span>
+            </div>
+          </div>
+          
+          <!-- Specs Table contents -->
+          <div class="detail-tab-content hidden" id="detail-tab-specs">
+            <table class="specs-table">
+              <tbody>
+                <tr>
+                  <td>Nomor ISBN</td>
+                  <td id="detail-isbn">000-000-000-000-0</td>
+                </tr>
+                <tr>
+                  <td>Jumlah Halaman</td>
+                  <td id="detail-pages">0 Halaman</td>
+                </tr>
+                <tr>
+                  <td>Dimensi Buku</td>
+                  <td id="detail-size">0 x 0 cm</td>
+                </tr>
+                <tr>
+                  <td>Berat Pengiriman</td>
+                  <td id="detail-weight">0 gram</td>
+                </tr>
+                <tr>
+                  <td>Tahun Terbit</td>
+                  <td id="detail-date">-</td>
+                </tr>
+                <tr>
+                  <td>Penerbit Utama</td>
+                  <td id="detail-publisher">Darussholah</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       GLOBAL MODAL DIALOG: CUSTOM SAMPLE PDF VIEWER
+       ======================================================================== -->
+  <div class="modal-overlay" id="pdf-viewer-modal">
+    <div class="modal-content pdf-modal-content">
+      <div class="pdf-viewer-header">
+        <div class="pdf-title-info">
+          <i class="fas fa-file-pdf"></i>
+          <h3 id="pdf-book-title">Sneak Peek: Judul Buku</h3>
+        </div>
+        <div class="pdf-controls">
+          <button class="pdf-btn" id="pdf-prev-btn" title="Halaman Sebelumnya"><i class="fas fa-chevron-left"></i></button>
+          <span class="pdf-page-indicator" id="pdf-page-num">Halaman 1-2 dari 4</span>
+          <button class="pdf-btn" id="pdf-next-btn" title="Halaman Selanjutnya"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <button class="modal-close" style="position: static; background: #444; color: #ccc; margin-left: 10px;"><i class="fas fa-times"></i></button>
+      </div>
+      
+      <!-- Interactive PDF sheets -->
+      <div class="pdf-body">
+        <div class="book-pages-spread">
+          <!-- Page 1 (Left Sheet) -->
+          <div class="pdf-page-sheet left-page" id="pdf-left-page"></div>
+          <!-- Page 2 (Right Sheet) -->
+          <div class="pdf-page-sheet right-page" id="pdf-right-page"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       GLOBAL MODAL DIALOG: ADMIN ADD / EDIT BOOK (MODERN TABBED CMS)
+       ======================================================================== -->
+  <div class="modal-overlay" id="admin-book-modal">
+    <div class="modal-content admin-modal-content">
+      <button class="modal-close" id="admin-modal-close-btn" type="button"><i class="fas fa-times"></i></button>
+      
+      <!-- Modal Sticky Header -->
+      <div class="admin-modal-header">
+        <div class="admin-modal-badge"><i class="fas fa-book-medical"></i> Katalog Editor</div>
+        <h2 id="admin-modal-title">Tambah Koleksi Buku Baru</h2>
+        <p class="admin-modal-subtitle">Kelola informasi buku, harga, spesifikasi cetak, dan tautan marketplace resmi.</p>
+
+        <!-- Modern Tabs Header with Live Error Notification Badges -->
+        <div class="admin-modal-nav-tabs">
+          <button type="button" class="admin-tab-btn active" data-tab="basic" id="tab-btn-basic">
+            <i class="fas fa-book"></i> 1. Info & Sinopsis
+            <span class="tab-error-badge" id="badge-tab-basic" style="display: none;"></span>
+          </button>
+          <button type="button" class="admin-tab-btn" data-tab="pricing" id="tab-btn-pricing">
+            <i class="fas fa-tags"></i> 2. Harga & Marketplace
+            <span class="tab-error-badge" id="badge-tab-pricing" style="display: none;"></span>
+          </button>
+          <button type="button" class="admin-tab-btn" data-tab="specs" id="tab-btn-specs">
+            <i class="fas fa-layer-group"></i> 3. Spesifikasi & Cover
+            <span class="tab-error-badge" id="badge-tab-specs" style="display: none;"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Form Container -->
+      <form id="admin-book-form" class="admin-modal-form" novalidate>
+        <input type="hidden" id="form-book-id">
+        <input type="hidden" id="form-book-cover-url">
+
+        <div class="admin-modal-body">
+          <!-- Sleek Non-Intrusive Validation Alert Bar -->
+          <div class="admin-validation-alert" id="admin-validation-alert" style="display: none;">
+            <div class="val-alert-left">
+              <i class="fas fa-exclamation-circle val-alert-icon"></i>
+              <span id="val-alert-text">Terdapat kolom wajib yang belum diisi. Silakan lengkapi kolom yang ditandai merah pada tab di atas.</span>
+            </div>
+            <button type="button" class="val-alert-close" id="admin-val-alert-close" title="Tutup pemberitahuan">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          <!-- TAB 1: Informasi & Sinopsis -->
+          <div class="admin-tab-pane active" id="pane-basic">
+            <div class="form-group">
+              <label for="form-book-title" class="admin-label">
+                <span>Judul Lengkap Buku <span class="req-star">*</span></span>
+                <span class="field-error-hint" id="err-form-book-title" style="display: none;"><i class="fas fa-exclamation-circle"></i> Wajib diisi</span>
+              </label>
+              <input type="text" id="form-book-title" class="form-control" placeholder="Contoh: Terjemah Fathul Qorib Al-Mujib" required>
+            </div>
+
+            <div class="admin-grid-2">
+              <div class="form-group">
+                <label for="form-book-author" class="admin-label">
+                  <span>Penulis / Penyusun <span class="req-star">*</span></span>
+                  <span class="field-error-hint" id="err-form-book-author" style="display: none;"><i class="fas fa-exclamation-circle"></i> Wajib diisi</span>
+                </label>
+                <input type="text" id="form-book-author" class="form-control" placeholder="Nama pengarang / penerjemah" required>
+              </div>
+              <div class="form-group">
+                <label for="form-book-genre" class="admin-label">
+                  <span>Kategori / Genre Kitab <span class="req-star">*</span></span>
+                  <span class="field-error-hint" id="err-form-book-genre" style="display: none;"><i class="fas fa-exclamation-circle"></i> Wajib dipilih</span>
+                </label>
+                <select id="form-book-genre" class="form-control" required>
+                  <option value="fiqih">Fiqih</option>
+                  <option value="tatabahasa">Tatabahasa (Nahwu/Sharaf)</option>
+                  <option value="akhlak">Akhlak & Tasawuf</option>
+                  <option value="aqidah">Aqidah</option>
+                  <option value="umum">Umum</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="admin-grid-3">
+              <div class="form-group">
+                <label for="form-book-format" class="admin-label">Format Buku</label>
+                <select id="form-book-format" class="form-control">
+                  <option value="print">Cetak Fisik</option>
+                  <option value="ebook">E-Book Digital</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="form-book-status" class="admin-label">Status Tampilan</label>
+                <select id="form-book-status" class="form-control">
+                  <option value="normal">Standar (Normal)</option>
+                  <option value="bestseller">Bestseller</option>
+                  <option value="new">Koleksi Baru</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="form-book-isbn" class="admin-label">Nomor ISBN</label>
+                <input type="text" id="form-book-isbn" class="form-control" placeholder="978-602-0853-xx-x">
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 10px;">
+              <label for="form-book-synopsis" class="admin-label">Sinopsis & Ringkasan Buku</label>
+              <textarea id="form-book-synopsis" class="form-control" rows="4" placeholder="Tuliskan sinopsis singkat mengenai kitab/buku ini agar menarik minat pembaca..."></textarea>
+            </div>
+          </div>
+
+          <!-- TAB 2: Harga & Marketplace -->
+          <div class="admin-tab-pane" id="pane-pricing">
+            <div class="admin-section-card">
+              <h4 class="admin-section-title"><i class="fas fa-coins text-accent"></i> Rincian Harga & Diskon</h4>
+              <div class="admin-grid-3">
+                <div class="form-group">
+                  <label for="form-book-original-price" class="admin-label">
+                    <span>Harga Normal / HET <span class="req-star">*</span></span>
+                    <span class="field-error-hint" id="err-form-book-original-price" style="display: none;"><i class="fas fa-exclamation-circle"></i> Wajib diisi</span>
+                  </label>
+                  <div class="input-currency-wrap" id="wrap-form-book-original-price">
+                    <span class="currency-prefix">Rp</span>
+                    <input type="text" inputmode="numeric" id="form-book-original-price" class="form-control" placeholder="Contoh: 100.000" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="form-book-discount" class="admin-label">
+                    <span>Diskon</span>
+                  </label>
+                  <div class="input-suffix-wrap" id="wrap-form-book-discount">
+                    <input type="number" id="form-book-discount" class="form-control" placeholder="0" min="0" max="100" value="0">
+                    <span class="input-suffix">%</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="form-book-price" class="admin-label">
+                    <span>Harga Jual Akhir <span class="req-star">*</span></span>
+                    <span class="field-error-hint" id="err-form-book-price" style="display: none;"><i class="fas fa-exclamation-circle"></i> Wajib diisi</span>
+                  </label>
+                  <div class="input-currency-wrap wrap-price-highlight" id="wrap-form-book-price">
+                    <span class="currency-prefix">Rp</span>
+                    <input type="text" inputmode="numeric" id="form-book-price" class="form-control price-highlight" placeholder="Contoh: 80.000" required>
+                  </div>
+                </div>
+              </div>
+              <div class="price-hint-text">
+                <i class="fas fa-info-circle"></i> Harga jual akhir akan otomatis terhitung saat harga normal atau persentase diskon diubah.
+              </div>
+            </div>
+
+            <div class="admin-section-card" style="margin-top: 18px;">
+              <h4 class="admin-section-title"><i class="fas fa-store text-accent"></i> Tautan Toko & Marketplace</h4>
+              <div class="form-group">
+                <label for="form-book-shopee" class="admin-label">
+                  <span class="pill-badge pill-shopee"><i class="fas fa-shopping-basket"></i> Shopee</span> Tautan Produk Shopee Resmi
+                </label>
+                <input type="url" id="form-book-shopee" class="form-control" placeholder="https://shopee.co.id/product/...">
+              </div>
+
+              <div class="admin-grid-2">
+                <div class="form-group">
+                  <label for="form-book-tokopedia" class="admin-label">
+                    <span class="pill-badge pill-tokopedia"><i class="fas fa-store"></i> Tokopedia</span> Tautan Tokopedia
+                  </label>
+                  <input type="url" id="form-book-tokopedia" class="form-control" placeholder="https://tokopedia.com/product/...">
+                </div>
+                <div class="form-group">
+                  <label for="form-book-wa" class="admin-label">
+                    <span class="pill-badge pill-wa"><i class="fab fa-whatsapp"></i> WhatsApp</span> WhatsApp Sales
+                  </label>
+                  <input type="text" id="form-book-wa" class="form-control" placeholder="https://wa.me/628123456789">
+                </div>
+              </div>
+            </div>
+
+            <div class="admin-section-card" style="margin-top: 18px;">
+              <h4 class="admin-section-title"><i class="fas fa-shield-alt text-accent"></i> Garansi Resmi</h4>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label for="form-book-warranty" class="admin-label">Klausa Garansi Konsumen</label>
+                <input type="text" id="form-book-warranty" class="form-control" value="Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.">
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: Spesifikasi & Cover -->
+          <div class="admin-tab-pane" id="pane-specs">
+            <div class="admin-specs-layout">
+              <!-- Cover Column -->
+              <div class="admin-specs-cover-col">
+                <h4 class="admin-section-title"><i class="fas fa-image text-accent"></i> Cover Buku</h4>
+                
+                <div class="admin-dropzone" id="admin-cover-dropzone">
+                  <div class="dropzone-inner">
+                    <i class="fas fa-cloud-upload-alt admin-dropzone-icon"></i>
+                    <p class="admin-dropzone-text">Tarik gambar cover ke sini</p>
+                    <span class="dropzone-browse">Pilih Berkas</span>
+                    <span style="display:block; font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">PNG, JPG, WebP (Maks. 5MB)</span>
+                  </div>
+                  <input type="file" id="form-book-cover-file" accept="image/*" style="display: none;">
+                </div>
+
+                <div class="admin-cover-preview-wrap" id="admin-cover-preview-box" style="display: none;">
+                  <img id="admin-cover-preview-img" src="" alt="Preview Cover">
+                  <div style="flex: 1;">
+                    <span style="display:block; font-size: 0.8rem; font-weight: 600; color: var(--primary); margin-bottom: 6px;">Cover Terpasang</span>
+                    <button type="button" class="btn-remove-cover" id="admin-btn-remove-cover">
+                      <i class="fas fa-trash-alt"></i> Hapus Cover
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Specs Fields Column -->
+              <div class="admin-specs-fields-col">
+                <h4 class="admin-section-title"><i class="fas fa-ruler-combined text-accent"></i> Dimensi & Logistik</h4>
+
+                <!-- Dimensi Fisik Buku (Lebar, Tinggi, Tebal dengan Satuan Akhir) -->
+                <div class="admin-grid-3">
+                  <div class="form-group">
+                    <label for="form-book-width" class="admin-label">Lebar</label>
+                    <div class="input-suffix-wrap">
+                      <input type="text" id="form-book-width" class="form-control" placeholder="Contoh: 14">
+                      <span class="input-suffix">cm</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="form-book-height" class="admin-label">Tinggi</label>
+                    <div class="input-suffix-wrap">
+                      <input type="text" id="form-book-height" class="form-control" placeholder="Contoh: 21">
+                      <span class="input-suffix">cm</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="form-book-thickness" class="admin-label">Tebal</label>
+                    <div class="input-suffix-wrap">
+                      <input type="text" id="form-book-thickness" class="form-control" placeholder="Contoh: 1.5">
+                      <span class="input-suffix">cm</span>
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" id="form-book-size" value="">
+
+                <div class="admin-grid-2">
+                  <div class="form-group">
+                    <label for="form-book-weight" class="admin-label">Berat Fisik</label>
+                    <div class="input-suffix-wrap">
+                      <input type="text" id="form-book-weight" class="form-control" placeholder="Contoh: 200">
+                      <span class="input-suffix">gram</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="form-book-pages" class="admin-label">Jumlah Halaman</label>
+                    <div class="input-suffix-wrap">
+                      <input type="text" id="form-book-pages" class="form-control" placeholder="Contoh: 180">
+                      <span class="input-suffix">Halaman</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="admin-grid-2">
+                  <div class="form-group">
+                    <label for="form-book-language" class="admin-label">Bahasa Pengantar</label>
+                    <input type="text" id="form-book-language" class="form-control" placeholder="Indonesia & Arab">
+                  </div>
+                  <div class="form-group">
+                    <label for="form-book-release" class="admin-label">Tahun Terbit</label>
+                    <input type="text" id="form-book-release" class="form-control" placeholder="Contoh: 2026">
+                  </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="admin-label">Penerbit</label>
+                  <input type="text" class="form-control" value="Darussholah" disabled style="background:#f1f5f9; cursor:not-allowed; color:#64748b;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Sticky Action Footer -->
+        <div class="admin-modal-footer">
+          <div class="footer-left-btns">
+            <button type="button" class="btn btn-outline-dark" id="admin-tab-prev-btn" style="display: none;">
+              <i class="fas fa-chevron-left"></i> Sebelumnya
+            </button>
+            <span class="step-indicator" id="admin-step-indicator">Langkah 1 dari 3: Info & Sinopsis</span>
+          </div>
+          <div class="footer-right-btns">
+            <button type="button" class="btn btn-secondary" id="admin-btn-cancel">Batal</button>
+            <button type="button" class="btn btn-outline-dark" id="admin-tab-next-btn">
+              Lanjut <i class="fas fa-chevron-right"></i>
+            </button>
+            <button type="submit" class="btn btn-primary" id="admin-btn-submit">
+              <i class="fas fa-save"></i> Simpan Buku
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Core Javascript File -->
+  <script src="app.js"></script>
+</body>
+</html>

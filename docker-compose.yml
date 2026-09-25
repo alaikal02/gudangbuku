@@ -89,6 +89,37 @@ services:
       timeout: 10s
       retries: 5
 
+  # =========================================================================
+  # 4. Tokobuku Web Storefront & Cloud API Service (Darussholah Tokobuku)
+  # =========================================================================
+  tokobuku-app:
+    build:
+      context: ./tokobuku-v2
+      dockerfile: Dockerfile
+      args:
+        PORT: ${PORT:-8000}
+        SUPABASE_URL: ${SUPABASE_URL:-}
+        SUPABASE_KEY: ${SUPABASE_KEY:-}
+    container_name: darussholah_tokobuku
+    restart: unless-stopped
+    ports:
+      - "${PORT:-8000}:${PORT:-8000}"
+    environment:
+      - PORT=${PORT:-8000}
+      - HOST=0.0.0.0
+      - SUPABASE_URL=${SUPABASE_URL:-}
+      - SUPABASE_KEY=${SUPABASE_KEY:-}
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./tokobuku-v2/books.json:/app/books.json
+      - ./tokobuku-v2/uploads:/app/uploads
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:${PORT:-8000}/api/health || exit 1"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
 volumes:
   postgres_data:
     driver: local
@@ -96,3 +127,4 @@ volumes:
     driver: local
   es_data:
     driver: local
+

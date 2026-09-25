@@ -1,0 +1,246 @@
+[
+  {
+    "id": "nadham-qaidah-sharfiyyah",
+    "title": "Nadham Qaidah sharfiyyah (saku)",
+    "author": "K.H. M. Anwar",
+    "genre": "tatabahasa",
+    "format": "print",
+    "status": "bestseller",
+    "isbn": "978-602-0853-20-4",
+    "price": 55000,
+    "originalPrice": 55000,
+    "discount": 0,
+    "synopsis": "Buku saku praktis yang memuat bait-bait Nadham Qaidah Sharfiyyah untuk memudahkan para santri menghafal dan memahami perubahan kata (tashrif) dalam tata bahasa Arab. Sangat cocok bagi santri tingkat dasar (Ibtidaiyah) untuk hafalan harian.",
+    "coverClass": "bg-gradient-to-br from-indigo-950 via-slate-900 to-indigo-900",
+    "coverImg": "",
+    "specs": {
+      "language": "Arab & Indonesia",
+      "pages": "96 Halaman",
+      "size": "10 x 14 cm (Saku)",
+      "weight": "120 gram",
+      "releaseDate": "Mei 2025",
+      "publisher": "Darussholah"
+    },
+    "samplePages": [
+      {
+        "left": "<h2>بَابُ التَّصْرِيْفِ</h2><p>تَصْرِيْفُ الأسْمَاءِ وَالأفْعَالِ هُوَ تَحْوِيْلُ الأصْلِ الْوَاحِدِ اِلىٰ أمْثِلَةٍ مُخْتَلِفَةٍ لِمَعَانٍ مَقْصُوْدَةٍ لاَ تَحْصُلُ اِلاَّ بِهَا.</p><p>Tashrif secara bahasa berarti perubahan. Secara istilah, tashrif adalah merubah bentuk kalimat asal (masdar/fi'il) ke bentuk-bentuk lain untuk menghasilkan makna yang dikehendaki.</p>",
+        "right": "<h2>KAIDAH PERUBAHAN</h2><p>1. Fi'il Tsulatsi Mujarrad memiliki 6 bab tasrif: fa'ala-yaf'ulu, fa'ala-yaf'ili, fa'ala-yaf'alu, fa'ila-yaf'alu, fa'ula-yaf'ulu, fa'ila-yaf'ilu.</p><p>Santri diwajibkan menghafal wazan dan mauzun beserta contoh penerapannya dalam Al-Qur'an.</p>"
+      }
+    ]
+  },
+  {
+    "id": "trjmh-f-qorib-zaman-now",
+    "altId": "trjmh-fqorib-zaman-now-saku",
+    "title": "Trjmh F.Qorib Zaman Now (saku)",
+    "author": "Tim Redaksi Darussholah",
+    "genre": "fiqih",
+    "format": "print",
+    "status": "new",
+    "isbn": "978-602-0853-21-1",
+    "price": 60000,
+    "originalPrice": 75000,
+    "discount": 20,
+    "synopsis": "Terjemah Kitab Fathul Qorib Al-Mujib yang disajikan secara kekinian dengan bahasa yang mudah dicerna oleh generasi millenial dan santri era digital, tanpa mengurangi orisinalitas hukum fikih fiqih Syafi'iyah.",
+    "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
+    "marketplace_links": {
+      "tokopedia": "https://tokopedia.com",
+      "shopee": "https://shopee.co.id",
+      "whatsapp_sales": "https://wa.me"
+    },
+    "dimensions": {
+      "length_cm": 14,
+      "width_cm": 10,
+      "type": "Saku"
+    },
+    "weight_gram": 180,
+    "pages": 180,
+    "pricing": {
+      "original_price": 75000,
+      "discount_percentage": 20,
+      "selling_price": 60000,
+      "currency": "IDR"
+    },
+    "coverClass": "bg-gradient-to-br from-emerald-900 via-green-900 to-stone-900",
+    "coverImg": "",
+    "specs": {
+      "language": "Indonesia & Arab",
+      "pages": "180 Halaman",
+      "size": "10 x 14 cm (Saku)",
+      "weight": "180 gram",
+      "releaseDate": "Maret 2026",
+      "publisher": "Darussholah"
+    },
+    "samplePages": [
+      {
+        "left": "<h2>بَابُ الطَّهَارَةِ</h2><p>الْمِيَاهُ الَّتِي يَجُوزُ التَّطْهِيرُ بِهَا سَبْعُ مِيَاهٍ: مَاءُ السَّمَاءِ، وَمَاءُ الْبَحْرِ، وَمَاءُ النَّهْرِ، وَمَاءُ الْبِئْرِ، وَمَاءُ الْعَيْنِ، وَمَاءُ الثَّلْجِ، وَمَاءُ الْبَرَدِ.</p><p>Air yang boleh digunakan bersuci ada 7 macam: air hujan, air laut, air sungai, air sumur, air mata air, air salju, dan air es/embun.</p>",
+        "right": "<h2>SYARAT WUDHU</h2><p>Fardhu wudhu ada 6 perkara: 1. Niat saat membasuh wajah, 2. Membasuh wajah, 3. Membasuh kedua tangan sampai siku, 4. Mengusap sebagian kepala, 5. Membasuh kedua kaki sampai mata kaki, 6. Tertib.</p>"
+      }
+    ]
+  },
+  {
+    "id": "fiqih-populer-saku-muin",
+    "title": "Fiqih populer saku (trjmh f.mu'in)",
+    "author": "K.H. Hamim Djazuli",
+    "genre": "fiqih",
+    "format": "print",
+    "status": "bestseller",
+    "isbn": "978-602-0853-22-8",
+    "price": 120000,
+    "originalPrice": 120000,
+    "discount": 0,
+    "synopsis": "Buku saku ringkas terjemah Fathul Mu'in. Membahas hukum fikih tingkat menengah madzhab Syafi'i secara lugas dan ringkas, sangat membantu santri senior (Aliyah/Mualimin) merujuk hukum ibadah praktis.",
+    "coverClass": "bg-gradient-to-br from-emerald-950 via-green-950 to-emerald-900",
+    "coverImg": "",
+    "specs": {
+      "language": "Indonesia",
+      "pages": "310 Halaman",
+      "size": "11 x 15 cm",
+      "weight": "250 gram",
+      "releaseDate": "Januari 2025",
+      "publisher": "Darussholah"
+    },
+    "samplePages": [
+      {
+        "left": "<h2>KAPASITAS SHALAT BERJAMA'AH</h2><p>Shalat berjama'ah hukumnya fardhu kifayah bagi laki-laki mukim untuk shalat lima waktu yang bukan shalat Jum'at. Bagi shalat Jum'at hukumnya fardhu 'ain.</p><p>Keutamaan jama'ah melebihi shalat sendirian sebanyak 27 derajat.</p>",
+        "right": "<h2>SYARAT IMAM & MAKMUM</h2><p>Di antara syarat sah berjama'ah: Makmum tidak boleh mengetahui batalnya shalat imam, kedudukan makmum tidak boleh lebih maju daripada imam, dan makmum harus mengikuti gerakan imam.</p>"
+      }
+    ]
+  },
+  {
+    "id": "terjemah-bidayatul-hidayah",
+    "title": "Terjemah Bidayatul Hidayah",
+    "author": "Imam Al-Ghazali (Terjemah)",
+    "genre": "akhlak",
+    "format": "print",
+    "status": "bestseller",
+    "isbn": "978-602-0853-24-2",
+    "price": 200000,
+    "originalPrice": 200000,
+    "discount": 0,
+    "synopsis": "Kajian Akhlak Paling Lengkap berdasarkan kitab Bidayatul Hidayah karya Hujjatul Islam Imam Al-Ghazali. Pemandu harian santri dalam menata adab bangun tidur, shalat, bergaul dengan sesama makhluk, dan menjauhi maksiat batin.",
+    "coverClass": "bg-gradient-to-br from-amber-950 via-red-955 to-stone-950",
+    "coverImg": "",
+    "specs": {
+      "language": "Indonesia",
+      "pages": "290 Halaman",
+      "size": "14 x 21 cm",
+      "weight": "350 gram",
+      "releaseDate": "Desember 2025",
+      "publisher": "Darussholah"
+    },
+    "samplePages": [
+      {
+        "left": "<h2>ADAB BANGUN TIDUR</h2><p>Saat matamu terbuka dari tidur, berusahalah agar yang pertama kali terbersit di hatimu adalah mengingat Allah. Ucapkanlah syukur: Segala puji bagi Allah yang menghidupkan kami setelah mematikan kami.</p>",
+        "right": "<h2>MENJAGA LISAN</h2><p>Peliharalah lisanmu dari 8 perkara: berdusta, mengingkari janji, ghibah (menggunjing), berbantah-bantahan, memuji diri sendiri, melaknat makhluk lain, mendoakan celaka orang lain, dan mengolok-olok.</p>"
+      }
+    ]
+  },
+  {
+    "id": "terjemah-matan-al-ajurumiyyah",
+    "title": "Terjemah & Makna Gandul Al-Jurumiyyah",
+    "author": "Abu Abdillah As-Shanhaji",
+    "genre": "tatabahasa",
+    "format": "print",
+    "status": "normal",
+    "isbn": "978-602-0853-25-9",
+    "price": 45000,
+    "originalPrice": 45000,
+    "discount": 0,
+    "synopsis": "Matan dasar ilmu nahwu legendaris dilengkapi dengan makna gandul Jawa pegon dan terjemah bahasa Indonesia sistematis. Panduan dasar mutlak bagi siapa saja yang ingin memahami kaidah baca kitab kuning.",
+    "coverClass": "bg-gradient-to-br from-blue-950 via-indigo-950 to-slate-900",
+    "coverImg": "",
+    "specs": {
+      "language": "Arab & Pegon/Indo",
+      "pages": "88 Halaman",
+      "size": "10 x 14 cm (Saku)",
+      "weight": "110 gram",
+      "releaseDate": "Februari 2025",
+      "publisher": "Darussholah"
+    },
+    "samplePages": [
+      {
+        "left": "<h2>بَابُ الْكَلاَمِ</h2><p>الْكَلاَمُ: هُوَ اللَّفْظُ الْمُرَكَّبُ الْمُفِيْدُ بِالْوَضْعِ. وَاَقْسَامُهُ ثَلاَثَةٌ: اِسْمٌ، وَفِعْلٌ، وَحَرْفٌ جَاءَ لِمَعْنًى.</p><p>Kalam adalah lafadz yang tersusun yang memberi faidah serta disengaja menurut aturan bahasa Arab.</p>",
+        "right": "<h2>TANDA-TANDA KALIMAT</h2><p>Kalimat Isim diketahui dengan: Khafadh (jar), tanwin, kemasukan alif-lam (al-), dan huruf-huruf khafadh (min, ila, 'an, 'ala, fi, rubba, al-ba, al-kaf, al-lam).</p>"
+      }
+    ]
+  },
+  {
+    "id": "terjemah-ta-lim-muta-allim",
+    "title": "Terjemah Ta'limul Muta'allim (Adab Penuntut Ilmu)",
+    "author": "Syaikh Az-Zarnuji",
+    "genre": "akhlak",
+    "format": "print",
+    "status": "normal",
+    "isbn": "978-602-0853-26-6",
+    "price": 65000,
+    "originalPrice": 65000,
+    "discount": 0,
+    "synopsis": "Kitab rujukan paling otentik seputar etika belajar, memilih guru, memilih teman, adab terhadap ilmu dan penghormatan kepada ustadz agar ilmu yang didapatkan berkah dan bermanfaat di dunia maupun akhirat.",
+    "coverClass": "bg-gradient-to-br from-stone-900 via-amber-950 to-stone-950",
+    "coverImg": "",
+    "specs": {
+      "language": "Indonesia",
+      "pages": "160 Halaman",
+      "size": "14 x 21 cm",
+      "weight": "200 gram",
+      "releaseDate": "November 2025",
+      "publisher": "Darussholah"
+    },
+    "samplePages": [
+      {
+        "left": "<h2>PASAL: MEMILIH ILMU DAN GURU</h2><p>Hendaknya penuntut ilmu memilih yang terbaik dalam setiap fan ilmu, dan memilih ilmu yang sedang ia butuhkan saat ini dalam urusan agamanya, kemudian baru ilmu yang ia butuhkan di masa mendatang.</p>",
+        "right": "<h2>PENGHORMATAN KEPADA GURU</h2><p>Ketahuilah bahwa penuntut ilmu tidak akan memperoleh ilmu dan tidak akan mengambil manfaatnya kecuali dengan mengagungkan ilmu dan ahlinya, serta menghormati gurunya dan memuliakannya.</p>"
+      }
+    ]
+  },
+  {
+    "title": "Cerita Indah Dibalik Asmaul Husna",
+    "author": "Darussholah",
+    "genre": "fiqih",
+    "format": "print",
+    "status": "normal",
+    "isbn": "Belum Terdaftar",
+    "price": 140000,
+    "originalPrice": 90000,
+    "discount": 0,
+    "synopsis": "Buku ini menghadirkan ulasan mendalam mengenai 99 Nama Indah Allah (Asma'ul Husna) berdasarkan sari pati kitab klasik monumental 'Al-Maqshodul Asna Fi Syarhi Asma'illahil Husna' karya ulama besar Imam Al-Ghazali. Tidak sekadar memaparkan definisi teks, buku ini dikemas secara informatif dengan menyelipkan kisah-kisah penuh hikmah dan keteladanan yang nyata di balik setiap untaian nama agung-Nya. Sebuah panduan literasi spiritual yang sangat cocok untuk membimbing keluarga, santri, dan masyarakat umum dalam mengenal Allah secara lebih dekat (Ma'rifatullah) sekaligus mengamalkan fadhilahnya demi meraih ketenangan hati dan keberkahan hidup.",
+    "warranty": "Setiap pembelian di situs resmi ini mendapatkan garansi penukaran buku baru jika terdapat kerusakan cetak atau halaman yang terbalik.",
+    "coverImg": "/uploads/1790069869_cidbah-depan-siap.png",
+    "coverClass": "",
+    "dimensions": {
+      "width_cm": 17,
+      "height_cm": 24,
+      "length_cm": 24,
+      "thickness_cm": 4.2,
+      "type": "Standar"
+    },
+    "weight_gram": 1300,
+    "pages": 180,
+    "pricing": {
+      "original_price": 90000,
+      "discount_percentage": 0,
+      "selling_price": 140000,
+      "currency": "IDR"
+    },
+    "marketplace_links": {},
+    "specs": {
+      "language": "Indonesia",
+      "pages": "180 Halaman",
+      "width": "17",
+      "height": "24",
+      "length": "24",
+      "thickness": "4.2",
+      "size": "17 × 24 × 4.2 cm",
+      "weight": "1300 gram",
+      "releaseDate": "2021",
+      "publisher": "Darussholah"
+    },
+    "samplePages": [
+      {
+        "left": "<h2>Cerita Indah Dibalik Asmaul Husna</h2><p>Buku ini diterbitkan secara resmi oleh Darussholah Publisher & Direct Retailer.</p><p>Buku ini menghadirkan ulasan mendalam mengenai 99 Nama Indah Allah (Asma'ul Husna) berdasarkan sari pati kitab klasik monumental 'Al-Maqshodul Asna Fi Syarhi Asma'illahil Husna' karya ulama besar Imam Al-Ghazali. Tidak sekadar memaparkan definisi teks, buku ini dikemas secara informatif dengan menyelipkan kisah-kisah penuh hikmah dan keteladanan yang nyata di balik setiap untaian nama agung-Nya. Sebuah panduan literasi spiritual yang sangat cocok untuk membimbing keluarga, santri, dan masyarakat umum dalam mengenal Allah secara lebih dekat (Ma'rifatullah) sekaligus mengamalkan fadhilahnya demi meraih ketenangan hati dan keberkahan hidup.</p>",
+        "right": "<h2>DAFTAR ISI & SPESIFIKASI</h2><p>Kategori: FIQIH<br>ISBN: Belum Terdaftar<br>Tebal: 180 Halaman<br>Dimensi: 17 × 24 × 4.2 cm</p><p>Dapatkan buku asli hanya melalui website resmi atau akun Shopee Darussholah.</p>"
+      }
+    ],
+    "id": "cerita-indah-dibalik-asmaul-husna"
+  }
+]
